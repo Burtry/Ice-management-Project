@@ -1,4 +1,3 @@
-/*
 package com.example.icemanagement.config;
 
 import lombok.extern.slf4j.Slf4j;
@@ -11,4 +10,3 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 @Slf4j
 public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 }
-*/

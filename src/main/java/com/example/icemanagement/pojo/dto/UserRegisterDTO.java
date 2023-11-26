@@ -1,23 +1,9 @@
-package com.example.icemanagement.pojo.entity;
+package com.example.icemanagement.pojo.dto;
 
 import lombok.Data;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
-
 @Data
-public class User implements Serializable {
-
-    /**
-     * id
-     */
-    private Integer id;
-
-    /**
-     * 创建时间
-     */
-    private LocalDateTime createTime;
+public class UserRegisterDTO {
     /**
      * 账号
      */
@@ -26,7 +12,10 @@ public class User implements Serializable {
      * 密码
      */
     private String password;
-
+    /**
+     * 确认密码
+     */
+    private String passwordAgain;
     /**
      * 用户昵称
      */
@@ -36,19 +25,13 @@ public class User implements Serializable {
      * 性别
      */
     private String sex;
-
     /**
      * 电话
      */
     private String phone;
-
     /**
      * 身份证
      */
     private String idNumber;
-    /**
-     *更新时间
-     */
-    private LocalDateTime updateTime;
-}
 
+}

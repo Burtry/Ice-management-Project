@@ -1,4 +1,4 @@
-package com.example.icemanagement.controller;
+package com.example.icemanagement.controller.user;
 import com.example.icemanagement.common.result.Result;
 import com.example.icemanagement.pojo.dto.UserLoginDTO;
 import com.example.icemanagement.pojo.dto.UserRegisterDTO;
@@ -10,10 +10,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 用户端相关控制层
+ */
+
 @RestController
 @Slf4j
 @RequestMapping("/user")
-@Tag(name = "find参数")
+@Tag(name = "用户端")
 public class UserController {
     @Autowired
     private UserService userService;

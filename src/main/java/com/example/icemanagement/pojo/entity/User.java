@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+/**
+ * 用户
+ */
 @Data
 public class User implements Serializable {
 

@@ -34,7 +34,6 @@ public class EquipmentController {
      */
     @Operation(summary = "器材查询")
     @GetMapping("/page")
-    //TODO 待完成 -- 分页
     public Result<PageResult> page(EquipmentPageQueryDTO equipmentPageQueryDTO) {
         log.info("器材查询");
         PageResult pageResult = equipmentService.pageQuery(equipmentPageQueryDTO);

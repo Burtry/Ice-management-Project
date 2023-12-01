@@ -34,7 +34,7 @@ public class EquipmentServiceImpl implements EquipmentService {
         //调用mapper层进行数据查询，返回一个Page类型的对象,通过这个对象就可以获得总记录数和返回结果
         Page<Equipment> page = equipmentMapper.pageQuery(equipmentPageQueryDTO);
         List<Equipment> result = page.getResult();
-        int total = result.size();
+        long total = page.getTotal();
         return new PageResult(total,result);
     }
 

@@ -13,6 +13,7 @@ mybatis:
     # 开启驼峰命名
     map-underscore-to-camel-case: true
 
+
 knife4j:
   enable: true
   openapi:
@@ -32,3 +33,8 @@ knife4j:
         api-rule: package
         api-rule-resources:
           - com.knife4j.demo.new3
+ice:
+  jwt:
+    admin-secret-key: burtry
+    admin-ttl: 72000000
+    admin-token-name: token

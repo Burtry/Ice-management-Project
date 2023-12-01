@@ -6,6 +6,11 @@
 
     <select id="pageQuery" resultType="com.example.icemanagement.pojo.entity.Equipment">
         select * from icemanagement.equipment
+            <where>
+                <if test="name != null" >
+                    and equipment_name like concat('%' #{name}, '%')
+                </if>
+            </where>
         order by create_time DESC
     </select>
 </mapper>

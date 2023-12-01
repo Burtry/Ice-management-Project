@@ -12,7 +12,7 @@ public interface EquipmentService {
      * 器材查询
      * @return
      */
-    PageResult pageQuery();
+    PageResult pageQuery(EquipmentPageQueryDTO equipmentPageQueryDTO);
 
     /**
      * 新增器材

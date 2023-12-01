@@ -6,6 +6,9 @@ import java.io.Serializable;
 @Data
 public class EquipmentPageQueryDTO implements Serializable {
 
+    //器材名称
+    private String name;
+
     //页码
     private int page;
 

@@ -13,7 +13,7 @@ public interface EquipmentMapper {
      * 器材查询
      * @return
      */
-    Page<Equipment> pageQuery();
+    Page<Equipment> pageQuery(EquipmentPageQueryDTO equipmentPageQueryDTO);
 
     /**
      * 新增器材

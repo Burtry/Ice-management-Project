@@ -27,11 +27,15 @@ public class EquipmentServiceImpl implements EquipmentService {
      * @return
      */
     @Override
-    public PageResult pageQuery() {
-        Page<Equipment> page = equipmentMapper.pageQuery();
+    public PageResult pageQuery(EquipmentPageQueryDTO equipmentPageQueryDTO) {
+        //开始分页查询
+        //1.开始分页，调用pagehelper中的startPage方法，传进去页码和每页展示数
+        PageHelper.startPage(equipmentPageQueryDTO.getPage(), equipmentPageQueryDTO.getPageSize());
+        //调用mapper层进行数据查询，返回一个Page类型的对象,通过这个对象就可以获得总记录数和返回结果
+        Page<Equipment> page = equipmentMapper.pageQuery(equipmentPageQueryDTO);
         List<Equipment> result = page.getResult();
-        int size = result.size();
-        return new PageResult(size,result);
+        int total = result.size();
+        return new PageResult(total,result);
     }
 
     /**

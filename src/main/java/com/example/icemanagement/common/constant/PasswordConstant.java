@@ -1,4 +1,4 @@
-package com.example.icemanagement.common.Constant;
+package com.example.icemanagement.common.constant;
 
 /**
  * 密码常量

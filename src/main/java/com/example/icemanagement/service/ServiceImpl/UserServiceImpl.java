@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
      * @return 用户信息
      */
     @Override
-    public User findById(Integer id) {
+    public User findById(Long id) {
         return userMapper.findById(id);
     }
 

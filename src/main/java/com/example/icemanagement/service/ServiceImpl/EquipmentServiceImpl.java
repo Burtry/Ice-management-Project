@@ -4,6 +4,7 @@ import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.mapper.EquipmentMapper;
 import com.example.icemanagement.pojo.dto.EquipmentDTO;
 import com.example.icemanagement.pojo.dto.EquipmentPageQueryDTO;
+import com.example.icemanagement.pojo.dto.EquipmentPageQueryDTOByType;
 import com.example.icemanagement.pojo.entity.Equipment;
 import com.example.icemanagement.pojo.entity.User;
 import com.example.icemanagement.service.EquipmentService;
@@ -23,7 +24,7 @@ public class EquipmentServiceImpl implements EquipmentService {
     private EquipmentMapper equipmentMapper;
 
     /**
-     * 器材查询
+     * 分页器材查询
      * @return
      */
     @Override
@@ -39,6 +40,45 @@ public class EquipmentServiceImpl implements EquipmentService {
     }
 
     /**
+     * 根据类型分页查询
+     * @param
+     * @return
+     */
+    @Override
+    public PageResult pageByType(EquipmentPageQueryDTOByType equipmentPageQueryDTOByType) {
+        PageHelper.startPage(equipmentPageQueryDTOByType.getPage(),equipmentPageQueryDTOByType.getPageSize());
+        Page<Equipment> page = equipmentMapper.pageByType(equipmentPageQueryDTOByType);
+        List<Equipment> result = page.getResult();
+        long total = page.getTotal();
+        return new PageResult(total,result);
+    }
+
+    /**
+     * 根据id查询器材
+     * @param id
+     * @return
+     */
+    @Override
+    public Equipment getById(Long id) {
+        Equipment equipment = equipmentMapper.getById(id);
+        return equipment;
+    }
+
+    /**
+     * 修改器材
+     * @param equipmentDTO
+     */
+    @Override
+    public void update(EquipmentDTO equipmentDTO) {
+        Equipment equipment = new Equipment();
+        BeanUtils.copyProperties(equipmentDTO,equipment);
+        //更新修改时间
+        equipment.setUpdateTime(LocalDateTime.now());
+        //修改器材信息
+        equipmentMapper.update(equipment);
+    }
+
+    /**
      * 新增器材
      * @param
      */
@@ -48,6 +88,17 @@ public class EquipmentServiceImpl implements EquipmentService {
         BeanUtils.copyProperties(equipmentDTO,equipment);
 
         equipment.setCreateTime(LocalDateTime.now());
+        equipment.setUpdateTime(LocalDateTime.now());
         equipmentMapper.insert(equipment);
     }
+
+    /**
+     * 根据ids集合批量删除器材
+     * @param ids id集合
+     */
+    @Override
+    public void delete(List<Long> ids) {
+        equipmentMapper.deleteByIds(ids);
+    }
+
 }

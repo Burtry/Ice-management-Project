@@ -3,6 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.icemanagement.mapper.EquipmentMapper">
 
+    <delete id="deleteByIds">
+        delete from icemanagement.equipment where id in
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
+    </delete>
 
     <select id="pageQuery" resultType="com.example.icemanagement.pojo.entity.Equipment">
         select * from icemanagement.equipment
@@ -13,4 +19,23 @@
             </where>
         order by create_time DESC
     </select>
+    <select id="pageByType" resultType="com.example.icemanagement.pojo.entity.Equipment">
+        select * from icemanagement.equipment where equipment_type = #{type}
+    </select>
+
+
+    <update id="update">
+        update icemanagement.equipment
+        <set>
+            <if test="equipmentName != null">equipment_name = #{equipmentName},</if>
+            <if test="equipmentType != null">equipment_type = #{equipmentType},</if>
+            <if test="specification != null">specification = #{specification},</if>
+            <if test="number != null and number != ''">number = #{number},</if>
+            <if test="precautions != null">precautions = #{precautions},</if>
+            <if test="equipmentDetail != null">equipment_detail = #{equipmentDetail},</if>
+            <if test="img != null">img = #{img},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

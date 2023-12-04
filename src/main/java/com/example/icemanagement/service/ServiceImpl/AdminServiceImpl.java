@@ -1,6 +1,6 @@
 package com.example.icemanagement.service.ServiceImpl;
 
-import com.example.icemanagement.common.Constant.PasswordConstant;
+import com.example.icemanagement.common.constant.PasswordConstant;
 import com.example.icemanagement.common.exception.AccountExitException;
 import com.example.icemanagement.common.exception.AccountNotFoundException;
 import com.example.icemanagement.mapper.AdminMapper;
@@ -61,5 +61,19 @@ public class AdminServiceImpl implements AdminService {
         //设置初始密码，并进行md5加密
         admin.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
         adminMapper.insert(admin);
+    }
+
+    /**
+     * 删除管理员
+     * @param id 管理员id
+     */
+    @Override
+    public void delete(Long id) {
+        adminMapper.delete(id);
+    }
+
+    @Override
+    public Admin findById(Long id) {
+        return adminMapper.findById(id);
     }
 }

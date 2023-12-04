@@ -21,7 +21,7 @@ public class EquipmentDTO {
     //器材数量
     private Integer number;
     //描述
-    private String equipmentDetial;
+    private String equipmentDetail;
     //图片
     private String img;
 }

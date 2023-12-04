@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface UserMapper {
 
-    User findById(Integer id);
+    User findById(Long id);
 
     /**
      * 通过账号和密码查询用户

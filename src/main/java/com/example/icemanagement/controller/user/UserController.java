@@ -26,7 +26,7 @@ public class UserController {
 
     @Operation(summary = "findGet请求")
     @GetMapping("/find")
-    public User find(Integer id) {
+    public User find(Long id) {
         log.info("用户查询,id:{}",id);
         return userService.findById(id);
     }

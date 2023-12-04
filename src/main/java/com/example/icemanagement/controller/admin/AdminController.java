@@ -11,6 +11,7 @@ import com.example.icemanagement.pojo.entity.User;
 import com.example.icemanagement.pojo.vo.AdminLoginVO;
 import com.example.icemanagement.service.AdminService;
 import com.example.icemanagement.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -43,12 +44,21 @@ public class AdminController {
     private JwtProperties jwtProperties;
 
 
-    @Operation(summary = "findGet请求")
-    @GetMapping("/find")
-    public User find(Integer id) {
+    @Operation(summary = "用户查询")
+    @GetMapping("/findUser")
+    public User findUser(Long id) {
         log.info("用户查询,id:{}",id);
         return userService.findById(id);
     }
+
+
+    @Operation(summary = "管理员查询")
+    @GetMapping("/findAdmin")
+    public Admin findAdmin(Long id) {
+        log.info("管理员查询,id:{}",id);
+        return adminService.findById(id);
+    }
+
 
     @Operation(summary = "管理员登录")
     @PostMapping("/login")
@@ -59,11 +69,12 @@ public class AdminController {
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", admin.getId());
 
+        //生成JWT令牌
         String token = JwtUtil.createJWT(
                 jwtProperties.getAdminSecretKey(),
                 jwtProperties.getAdminTtl(),
                 claims);
-
+        //VO对象封装
         AdminLoginVO adminLoginVO = new AdminLoginVO();
         adminLoginVO.setId(admin.getId());
         adminLoginVO.setName(admin.getName());
@@ -71,6 +82,16 @@ public class AdminController {
         adminLoginVO.setToken(token);
         return Result.success(adminLoginVO);
 
+    }
+
+    /**
+     * 退出
+     *
+     * @return
+     */
+    @PostMapping("/logout")
+    public Result<String> logout() {
+        return Result.success();
     }
 
     @PostMapping("/insertAdmin")
@@ -81,6 +102,12 @@ public class AdminController {
     }
 
 
-
+    @DeleteMapping()
+    @ApiOperation("根据id删除管理员")
+    @Operation(summary = "删除管理员")
+    public Result delete(Long  id) {
+        adminService.delete(id);
+        return Result.success();
+    }
 
 }

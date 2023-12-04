@@ -17,4 +17,17 @@ public interface AdminService {
      * @param adminDTO
      */
     void insert(AdminDTO adminDTO);
+
+    /**
+     * 删除管理员
+     * @param id
+     */
+    void delete(Long id);
+
+    /**
+     * 根据管理员id查询管理员
+     * @param id
+     * @return
+     */
+    Admin findById(Long id);
 }

@@ -22,10 +22,12 @@ public class Equipment {
     //注意事项
     private String precautions;
     //描述
-    private String equipmentDetial;
+    private String equipmentDetail;
     //图片
     private String img;
-
+    //创建时间
     private LocalDateTime createTime;
+
+    private LocalDateTime updateTime;
 
 }

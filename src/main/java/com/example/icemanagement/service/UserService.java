@@ -5,7 +5,7 @@ import com.example.icemanagement.pojo.entity.User;
 
 public interface UserService {
 
-    User findById(Integer id);
+    User findById(Long id);
 
     /**
      * 用户登录

@@ -15,6 +15,8 @@ public class Equipment {
     private String equipmentName;
     //器材类型
     private String equipmentType;
+    //
+    private Integer status;
     //器材规格
     private String specification;
     //器材数量

@@ -14,6 +14,8 @@ public class EquipmentDTO {
     private String equipmentName;
     //器材类型
     private String equipmentType;
+    //器材状态
+    private Integer status;
     //器材规格
     private String specification;
     //注意事项

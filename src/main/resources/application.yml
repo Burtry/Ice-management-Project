@@ -38,3 +38,6 @@ ice:
     admin-secret-key: burtry
     admin-ttl: 72000000
     admin-token-name: token
+    user-secret-key: burtry
+    user-token-name: authentication
+    user-ttl: 72000000

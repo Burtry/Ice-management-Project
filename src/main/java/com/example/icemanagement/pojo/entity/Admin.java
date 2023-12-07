@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 用户
+ * 管理员
  */
 @Data
 public class Admin implements Serializable {

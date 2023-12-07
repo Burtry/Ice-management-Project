@@ -53,6 +53,7 @@ public class AdminServiceImpl implements AdminService {
      */
     @Override
     public void insert(AdminDTO adminDTO) {
+
         Admin admin = new Admin();
         BeanUtils.copyProperties(adminDTO, admin);
         admin.setCreateTime(LocalDateTime.now());

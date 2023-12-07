@@ -1,11 +1,10 @@
 package com.example.icemanagement.controller.admin;
+import com.example.icemanagement.common.constant.JwtClaimsConstant;
 import com.example.icemanagement.common.result.Result;
 import com.example.icemanagement.common.utils.JwtUtil;
 import com.example.icemanagement.config.Properties.JwtProperties;
 import com.example.icemanagement.pojo.dto.AdminDTO;
 import com.example.icemanagement.pojo.dto.AdminLoginDTO;
-import com.example.icemanagement.pojo.dto.UserLoginDTO;
-import com.example.icemanagement.pojo.dto.UserRegisterDTO;
 import com.example.icemanagement.pojo.entity.Admin;
 import com.example.icemanagement.pojo.entity.User;
 import com.example.icemanagement.pojo.vo.AdminLoginVO;
@@ -63,11 +62,11 @@ public class AdminController {
     @Operation(summary = "管理员登录")
     @PostMapping("/login")
     public Result<AdminLoginVO> login(@RequestBody AdminLoginDTO adminLoginDTO) {
-        log.info("管理员登录登录：{}", adminLoginDTO);
+        log.info("管理员登录：{}", adminLoginDTO);
         Admin admin = adminService.login(adminLoginDTO);
         //登录成功后，生成jwt令牌
         Map<String, Object> claims = new HashMap<>();
-        claims.put("id", admin.getId());
+        claims.put(JwtClaimsConstant.EMP_ID, admin.getId());
 
         //生成JWT令牌
         String token = JwtUtil.createJWT(
@@ -97,6 +96,7 @@ public class AdminController {
     @PostMapping("/insertAdmin")
     @Operation(summary = "新增管理员")
     public Result<Object> insert(AdminDTO adminDTO) {
+        System.out.println(Thread.currentThread().getId());
         adminService.insert(adminDTO);
         return Result.success();
     }

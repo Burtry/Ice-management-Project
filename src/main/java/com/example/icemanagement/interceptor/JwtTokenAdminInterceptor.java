@@ -1,6 +1,4 @@
 package com.example.icemanagement.interceptor;
-
-
 import com.example.icemanagement.common.constant.JwtClaimsConstant;
 import com.example.icemanagement.common.context.BaseContext;
 import com.example.icemanagement.common.utils.JwtUtil;
@@ -35,7 +33,7 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
      */
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        System.out.println(Thread.currentThread().getId());
+        log.info("当前线程id:" + Thread.currentThread().getId());
 
         //判断当前拦截到的是Controller的方法还是其他资源
         if (!(handler instanceof HandlerMethod)) {

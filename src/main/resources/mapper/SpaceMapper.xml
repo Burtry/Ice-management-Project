@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.icemanagement.mapper.SpaceMapper">
+
+    <select id="pageQuery" resultType="com.example.icemanagement.pojo.entity.Space">
+        select * from icemanagement.space
+        <where>
+            <if test="name != null" >
+                and space_name like concat('%', #{name}, '%')
+            </if>
+        </where>
+        order by create_time DESC
+    </select>
+</mapper>

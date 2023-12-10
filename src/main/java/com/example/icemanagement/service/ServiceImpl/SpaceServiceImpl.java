@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class SpaceServiceImpl implements SpaceService {
@@ -31,9 +32,7 @@ public class SpaceServiceImpl implements SpaceService {
         space.setUpdateTime(LocalDateTime.now());
         spaceMapper.insert(space);
 
-
     }
-
     /**
      * 场地分页查询
      * @param spacePageQueryDTO
@@ -44,5 +43,26 @@ public class SpaceServiceImpl implements SpaceService {
         PageHelper.startPage(spacePageQueryDTO.getPage(),spacePageQueryDTO.getPageSize());
         Page<Space> page = spaceMapper.pageQuery(spacePageQueryDTO);
         return new PageResult(page.getTotal(), page.getResult());
+    }
+
+    /**
+     * 批量删除场地
+     * @param ids
+     */
+    @Override
+    public void delete(List<Long> ids) {
+        spaceMapper.deleteByIds(ids);
+    }
+
+    /**
+     * 修改器材
+     * @param spaceDTO
+     */
+    @Override
+    public void update(SpaceDTO spaceDTO) {
+        Space space = new Space();
+        BeanUtils.copyProperties(spaceDTO,space);
+        space.setUpdateTime(LocalDateTime.now());
+        spaceMapper.update(space);
     }
 }

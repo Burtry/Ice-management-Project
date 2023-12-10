@@ -30,4 +30,10 @@ public interface AdminService {
      * @return
      */
     Admin findById(Long id);
+
+    /**
+     * 修改管理员信息
+     * @param adminDTO
+     */
+    void update(AdminDTO adminDTO);
 }

@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 场地管理
  */
@@ -39,6 +41,11 @@ public class SpaceController {
 
     }
 
+    /**
+     * 场地分页查询
+     * @param spacePageQueryDTO
+     * @return
+     */
     @Operation(summary = "场地查询")
     @GetMapping("/page")
     public Result<PageResult> page(SpacePageQueryDTO spacePageQueryDTO) {
@@ -47,7 +54,32 @@ public class SpaceController {
         return Result.success(pageResult);
     }
 
+    /**
+     * 批量删除场地
+     * @param ids
+     * @return
+     */
+    @Operation(summary = "批量删除场地")
+    @DeleteMapping()
+    public Result delete(@RequestParam List<Long> ids) {
+        log.info("批量删除场地id:{}", ids);
+        spaceService.delete(ids);
+        return Result.success();
 
+    }
+
+    /**
+     * 修改场地
+     * @param spaceDTO
+     * @return
+     */
+    @Operation(summary = "修改场地")
+    @PutMapping()
+    public Result update(@RequestBody SpaceDTO spaceDTO) {
+        log.info("修改器材:{}",spaceDTO);
+        spaceService.update(spaceDTO);
+        return Result.success();
+    }
 
 
 

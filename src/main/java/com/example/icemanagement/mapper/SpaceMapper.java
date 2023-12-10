@@ -6,6 +6,8 @@ import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface SpaceMapper {
     /**
@@ -21,4 +23,16 @@ public interface SpaceMapper {
      * @return
      */
     Page<Space> pageQuery(SpacePageQueryDTO spacePageQueryDTO);
+
+    /**
+     * 批量删除场地
+     * @param ids
+     */
+    void deleteByIds(List<Long> ids);
+
+    /**
+     * 修改场地信息
+     * @param space
+     */
+    void update(Space space);
 }

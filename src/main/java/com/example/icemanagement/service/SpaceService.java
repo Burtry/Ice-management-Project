@@ -4,6 +4,8 @@ import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.pojo.dto.SpaceDTO;
 import com.example.icemanagement.pojo.dto.SpacePageQueryDTO;
 
+import java.util.List;
+
 public interface SpaceService {
     /**
      * 新增场地
@@ -17,4 +19,16 @@ public interface SpaceService {
      * @return
      */
     PageResult pageQuery(SpacePageQueryDTO spacePageQueryDTO);
+
+    /**
+     * 批量删除场地
+     * @param ids
+     */
+    void delete(List<Long> ids);
+
+    /**
+     * 修改器材
+     * @param spaceDTO
+     */
+    void update(SpaceDTO spaceDTO);
 }

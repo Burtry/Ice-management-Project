@@ -89,14 +89,15 @@ public class AdminController {
      * @return
      */
     @PostMapping("/logout")
+    @Operation(summary = "退出")
     public Result<String> logout() {
         return Result.success();
     }
 
     @PostMapping("/insertAdmin")
     @Operation(summary = "新增管理员")
-    public Result<Object> insert(AdminDTO adminDTO) {
-        System.out.println(Thread.currentThread().getId());
+    public Result<Object> insert(@RequestBody AdminDTO adminDTO) {
+        log.info("新增管理员:{}",adminDTO);
         adminService.insert(adminDTO);
         return Result.success();
     }
@@ -107,6 +108,15 @@ public class AdminController {
     @Operation(summary = "删除管理员")
     public Result delete(Long  id) {
         adminService.delete(id);
+        return Result.success();
+    }
+
+
+    @PutMapping()
+    @Operation(summary = "修改管理员信息")
+    public Result update(@RequestBody AdminDTO adminDTO) {
+        log.info("修改管理员信息");
+        adminService.update(adminDTO);
         return Result.success();
     }
 

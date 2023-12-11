@@ -1,7 +1,7 @@
 package com.example.icemanagement.service.ServiceImpl;
 
 import com.example.icemanagement.common.result.PageResult;
-import com.example.icemanagement.mapper.RecordsMapper;
+import com.example.icemanagement.mapper.RecordMapper;
 import com.example.icemanagement.pojo.dto.EquipmentRecordsPageQueryDTO;
 import com.example.icemanagement.pojo.entity.ReserveRecords;
 import com.example.icemanagement.service.ReserveService;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class ReserveServiceImpl implements ReserveService {
 
     @Autowired
-    private RecordsMapper recordsMapper;
+    private RecordMapper recordsMapper;
     /**
      * 分页查看器材租借记录
      * @param equipmentRecordsPageQueryDTO

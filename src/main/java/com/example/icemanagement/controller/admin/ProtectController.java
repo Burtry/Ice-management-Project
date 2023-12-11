@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 器材维护管理
  */
@@ -25,6 +27,7 @@ public class ProtectController {
 
     /**
      * 新增器材维护计划
+     *
      * @return
      */
     @Operation(summary = "新增维护计划")
@@ -45,5 +48,34 @@ public class ProtectController {
         PageResult pageResult = protectService.page(equipmentRecordsPageQueryDTO);
 
         return Result.success(pageResult);
+    }
+
+    /**
+     * 修改维护计划
+     *
+     * @param maintenanceRecordDTO
+     * @return
+     */
+    @Operation(summary = "修改维护计划")
+    @PutMapping()
+    public Result update(@RequestBody MaintenanceRecordDTO maintenanceRecordDTO) {
+        log.info("修改维护计划");
+        protectService.update(maintenanceRecordDTO);
+        return Result.success();
+    }
+
+    /**
+     * 批量删除维护计划
+     *
+     * @param ids
+     * @return
+     */
+    @Operation(summary = "批量删除维护计划")
+    @DeleteMapping()
+    public Result<Object> delete(@RequestParam List<Long> ids) {
+        log.info("根据ids删除维护计划:{}", ids);
+        protectService.delete(ids);
+        return Result.success();
+
     }
 }

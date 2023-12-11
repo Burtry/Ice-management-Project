@@ -6,6 +6,8 @@ import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface ProtectMapper {
     /**
@@ -21,4 +23,17 @@ public interface ProtectMapper {
      */
     @Select("select * from icemanagement.equipment_maintenance_records order by create_time desc")
     Page<MaintenanceRecord> page(EquipmentRecordsPageQueryDTO equipmentRecordsPageQueryDTO);
+
+
+    /**
+     * 更新维护计划
+     * @param maintenanceRecord
+     */
+    void update(MaintenanceRecord maintenanceRecord);
+
+    /**
+     * 根据ids批量删除维护计划
+     * @param ids
+     */
+    void delete(List<Long> ids);
 }

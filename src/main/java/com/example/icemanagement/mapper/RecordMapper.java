@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
-public interface RecordsMapper {
+public interface RecordMapper {
 
     /**
      * 查询租借记录

@@ -4,6 +4,8 @@ import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.pojo.dto.EquipmentRecordsPageQueryDTO;
 import com.example.icemanagement.pojo.dto.MaintenanceRecordDTO;
 
+import java.util.List;
+
 public interface ProtectService {
     /**
      * 新增维护计划
@@ -17,4 +19,16 @@ public interface ProtectService {
      * @return
      */
     PageResult page(EquipmentRecordsPageQueryDTO equipmentRecordsPageQueryDTO);
+
+    /**
+     * 修改维护计划
+     * @param maintenanceRecordDTO
+     */
+    void update(MaintenanceRecordDTO maintenanceRecordDTO);
+
+    /**
+     * 批量删除维护计划
+     * @param ids
+     */
+    void delete(List<Long> ids);
 }

@@ -4,6 +4,24 @@
 <mapper namespace="com.example.icemanagement.mapper.ProtectMapper">
 
     <insert id="insert">
-        insert into icemanagement.equipment_maintenance_records (equipment_id, maintenanceDate, technician, description, create_time, update_time) VALUES (#{equipmentId},#{maintenanceDate},#{technician},#{description},#{createTime},#{updateTime})
+        insert into icemanagement.equipment_maintenance_records (equipment_id, maintenance_date, technician, description, create_time, update_time) VALUES (#{equipmentId},#{maintenanceDate},#{technician},#{description},#{createTime},#{updateTime})
     </insert>
+    <update id="update">
+        update icemanagement.equipment_maintenance_records
+        <set>
+            <if test="equipmentId != null">equipment_id = #{equipmentId},</if>
+            <if test="maintenanceDate != null">maintenance_date = #{maintenanceDate},</if>
+            <if test="technician != null">technician = #{technician},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="delete">
+        delete from icemanagement.equipment_maintenance_records where id in
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

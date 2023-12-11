@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class ProtectServiceImpl implements ProtectService {
@@ -43,5 +44,28 @@ public class ProtectServiceImpl implements ProtectService {
         PageHelper.startPage(equipmentRecordsPageQueryDTO.getPage(),equipmentRecordsPageQueryDTO.getPageSize());
         Page<MaintenanceRecord> page = protectMapper.page(equipmentRecordsPageQueryDTO);
         return new PageResult(page.getTotal(),page.getResult());
+    }
+
+
+    /**
+     * 修改维护计划
+     * @param maintenanceRecordDTO
+     */
+    @Override
+    public void update(MaintenanceRecordDTO maintenanceRecordDTO) {
+        MaintenanceRecord maintenanceRecord = new MaintenanceRecord();
+        BeanUtils.copyProperties(maintenanceRecordDTO,maintenanceRecord);
+        maintenanceRecord.setUpdateTime(LocalDateTime.now());
+        protectMapper.update(maintenanceRecord);
+
+    }
+
+    /**
+     * 批量删除维护计划
+     * @param ids
+     */
+    @Override
+    public void delete(List<Long> ids) {
+        protectMapper.delete(ids);
     }
 }

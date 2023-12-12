@@ -43,7 +43,7 @@ public class AdminController {
     private JwtProperties jwtProperties;
 
 
-    @Operation(summary = "用户查询")
+    @Operation(summary = "根据id用户查询")
     @GetMapping("/findUser")
     public User findUser(Long id) {
         log.info("用户查询,id:{}",id);
@@ -51,7 +51,7 @@ public class AdminController {
     }
 
 
-    @Operation(summary = "管理员查询")
+    @Operation(summary = "根据id管理员查询")
     @GetMapping("/findAdmin")
     public Admin findAdmin(Long id) {
         log.info("管理员查询,id:{}",id);
@@ -94,6 +94,7 @@ public class AdminController {
         return Result.success();
     }
 
+
     @PostMapping("/insertAdmin")
     @Operation(summary = "新增管理员")
     public Result<Object> insert(@RequestBody AdminDTO adminDTO) {
@@ -101,7 +102,6 @@ public class AdminController {
         adminService.insert(adminDTO);
         return Result.success();
     }
-
 
     @DeleteMapping()
     @ApiOperation("根据id删除管理员")

@@ -57,6 +57,10 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .excludePathPatterns("/user/login");
     }
 
+    /**
+     * 拓展消息转化器消息转化器
+     * @param converters the list of configured converters to extend
+     */
     @Override
     protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         log.info("扩展消息转换器");

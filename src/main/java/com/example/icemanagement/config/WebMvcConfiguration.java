@@ -1,5 +1,6 @@
 package com.example.icemanagement.config;
 
+import com.example.icemanagement.common.json.JacksonObjectMapper;
 import com.example.icemanagement.interceptor.JwtTokenAdminInterceptor;
 import com.example.icemanagement.interceptor.JwtTokenUserInterceptor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -56,29 +57,18 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .excludePathPatterns("/user/login");
     }
 
-  /*  *//**
-     * 消息转化器
-     * @return
-     *//*
-    @Bean
-    public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
+    @Override
+    protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        log.info("扩展消息转换器");
+        //创建一个消息转换器对象
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-
-        // 获取默认ObjectMapper
-        ObjectMapper objectMapper = converter.getObjectMapper();
-
-        // 配置日期时间格式
-        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
-
-        // 在ObjectMapper中注册JavaTimeModule模块，以便支持Java 8中的新日期时间API
-        objectMapper.registerModule(new JavaTimeModule());
-
-        // 将配置好的ObjectMapper设置到Converter中
-        converter.setObjectMapper(objectMapper);
-
-        return converter;
-    }*/
-
-
+        //为消息转换器设置一个对象转换器,对象转换器可以将java对象序列化成json对象
+        converter.setObjectMapper(new JacksonObjectMapper());
+        //将自己的消息转换器加入到converters容器中去
+        /**
+         * 当加入到索引为0的位置时，Knife4j文档不能正常的访问，只有将消息转化器放到索引为1的位置时，才能正常访问
+         * 且时间格式能够正常的转化
+         */
+        converters.add(1,converter);
+    }
 }

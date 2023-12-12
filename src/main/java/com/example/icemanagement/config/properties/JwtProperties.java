@@ -1,4 +1,4 @@
-package com.example.icemanagement.config.Properties;
+package com.example.icemanagement.config.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

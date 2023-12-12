@@ -2,7 +2,7 @@ package com.example.icemanagement.controller.admin;
 import com.example.icemanagement.common.constant.JwtClaimsConstant;
 import com.example.icemanagement.common.result.Result;
 import com.example.icemanagement.common.utils.JwtUtil;
-import com.example.icemanagement.config.Properties.JwtProperties;
+import com.example.icemanagement.config.properties.JwtProperties;
 import com.example.icemanagement.pojo.dto.AdminDTO;
 import com.example.icemanagement.pojo.dto.AdminLoginDTO;
 import com.example.icemanagement.pojo.entity.Admin;

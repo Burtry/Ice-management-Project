@@ -2,7 +2,7 @@ package com.example.icemanagement.interceptor;
 import com.example.icemanagement.common.constant.JwtClaimsConstant;
 import com.example.icemanagement.common.context.BaseContext;
 import com.example.icemanagement.common.utils.JwtUtil;
-import com.example.icemanagement.config.Properties.JwtProperties;
+import com.example.icemanagement.config.properties.JwtProperties;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

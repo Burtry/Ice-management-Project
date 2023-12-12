@@ -49,7 +49,7 @@ public class EquipmentController {
      * @param type
      * @return
      */
-    @Operation(summary = "根据类型分页查询器材")
+    @Operation(summary = "分页查询器材根据类型")
     @GetMapping("/pageByType")
     public Result<PageResult> pageByType(EquipmentPageQueryDTOByType type) {
         log.info("根据类型查询器材:{}", type);

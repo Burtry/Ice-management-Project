@@ -42,7 +42,7 @@ public class ProtectController {
      * 维护计划分页查看
      */
     @GetMapping("/page")
-    @Operation(summary = "分页查看维护计划")
+    @Operation(summary = "分页查询维护计划")
     public Result<PageResult> page(EquipmentRecordsPageQueryDTO equipmentRecordsPageQueryDTO) {
         log.info("分页查看维护计划");
         PageResult pageResult = protectService.page(equipmentRecordsPageQueryDTO);

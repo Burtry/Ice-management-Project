@@ -46,7 +46,7 @@ public class SpaceController {
      * @param spacePageQueryDTO
      * @return
      */
-    @Operation(summary = "场地查询")
+    @Operation(summary = "分页查询场地")
     @GetMapping("/page")
     public Result<PageResult> page(SpacePageQueryDTO spacePageQueryDTO) {
         log.info("场地查询:{}", spacePageQueryDTO);

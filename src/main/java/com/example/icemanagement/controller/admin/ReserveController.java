@@ -29,7 +29,7 @@ public class ReserveController {
      * @param equipmentRecordsPageQueryDTO
      * @return
      */
-    @Operation(summary = "器材租借记录分页查询")
+    @Operation(summary = "分页查询器材租借记录")
     @GetMapping("/page")
     public Result<PageResult> page(EquipmentRecordsPageQueryDTO equipmentRecordsPageQueryDTO) {
         log.info("查看租借记录:{}", equipmentRecordsPageQueryDTO);

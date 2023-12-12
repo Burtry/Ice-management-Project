@@ -89,7 +89,7 @@ public class AdminController {
      * @return
      */
     @PostMapping("/logout")
-    @Operation(summary = "退出")
+    @Operation(summary = "管理员退出")
     public Result<String> logout() {
         return Result.success();
     }

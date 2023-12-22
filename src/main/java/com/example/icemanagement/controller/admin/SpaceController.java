@@ -2,10 +2,8 @@ package com.example.icemanagement.controller.admin;
 
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.common.result.Result;
-import com.example.icemanagement.pojo.dto.EquipmentPageQueryDTO;
 import com.example.icemanagement.pojo.dto.SpaceDTO;
 import com.example.icemanagement.pojo.dto.SpacePageQueryDTO;
-import com.example.icemanagement.pojo.entity.Space;
 import com.example.icemanagement.service.SpaceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

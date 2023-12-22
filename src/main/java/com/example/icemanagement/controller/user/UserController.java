@@ -22,8 +22,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
-
     @Operation(summary = "findGet请求")
     @GetMapping("/find")
     public User find(Long id) {

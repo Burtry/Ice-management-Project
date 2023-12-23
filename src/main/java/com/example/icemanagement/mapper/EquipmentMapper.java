@@ -1,9 +1,8 @@
 package com.example.icemanagement.mapper;
 
-import com.example.icemanagement.pojo.dto.EquipmentPageQueryDTO;
+import com.example.icemanagement.pojo.dto.EquipmentPageQueryDTOByName;
 import com.example.icemanagement.pojo.dto.EquipmentPageQueryDTOByType;
 import com.example.icemanagement.pojo.entity.Equipment;
-import com.example.icemanagement.pojo.entity.User;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -17,7 +16,7 @@ public interface EquipmentMapper {
      * 器材查询
      * @return
      */
-    Page<Equipment> pageQuery(EquipmentPageQueryDTO equipmentPageQueryDTO);
+    Page<Equipment> pageQuery(EquipmentPageQueryDTOByName equipmentPageQueryDTOByName);
 
     /**
      * 新增器材

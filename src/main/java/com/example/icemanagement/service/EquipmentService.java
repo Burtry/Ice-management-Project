@@ -2,11 +2,9 @@ package com.example.icemanagement.service;
 
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.pojo.dto.EquipmentDTO;
-import com.example.icemanagement.pojo.dto.EquipmentPageQueryDTO;
+import com.example.icemanagement.pojo.dto.EquipmentPageQueryDTOByName;
 import com.example.icemanagement.pojo.dto.EquipmentPageQueryDTOByType;
 import com.example.icemanagement.pojo.entity.Equipment;
-import com.example.icemanagement.pojo.entity.User;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -16,7 +14,7 @@ public interface EquipmentService {
      * 分页器材查询
      * @return
      */
-    PageResult pageQuery(EquipmentPageQueryDTO equipmentPageQueryDTO);
+    PageResult pageQuery(EquipmentPageQueryDTOByName equipmentPageQueryDTOByName);
 
     /**
      * 新增器材

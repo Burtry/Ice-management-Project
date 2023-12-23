@@ -2,17 +2,12 @@ package com.example.icemanagement.controller.admin;
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.common.result.Result;
 import com.example.icemanagement.pojo.dto.EquipmentDTO;
-import com.example.icemanagement.pojo.dto.EquipmentPageQueryDTO;
+import com.example.icemanagement.pojo.dto.EquipmentPageQueryDTOByName;
 import com.example.icemanagement.pojo.dto.EquipmentPageQueryDTOByType;
 import com.example.icemanagement.pojo.entity.Equipment;
-import com.example.icemanagement.pojo.entity.User;
 import com.example.icemanagement.service.EquipmentService;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +33,9 @@ public class EquipmentController {
      */
     @Operation(summary = "分页器材查询")
     @GetMapping("/page")
-    public Result<PageResult> page(EquipmentPageQueryDTO equipmentPageQueryDTO) {
-        log.info("器材查询:{}", equipmentPageQueryDTO);
-        PageResult pageResult = equipmentService.pageQuery(equipmentPageQueryDTO);
+    public Result<PageResult> page(EquipmentPageQueryDTOByName equipmentPageQueryDTOByName) {
+        log.info("器材查询:{}", equipmentPageQueryDTOByName);
+        PageResult pageResult = equipmentService.pageQuery(equipmentPageQueryDTOByName);
         return Result.success(pageResult);
     }
 

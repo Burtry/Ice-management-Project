@@ -2,7 +2,7 @@ package com.example.icemanagement.controller.admin;
 
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.common.result.Result;
-import com.example.icemanagement.pojo.dto.EquipmentRecordsPageQueryDTO;
+import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.entity.LeaseRecords;
 import com.example.icemanagement.service.LeaseService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,14 +25,14 @@ public class LeaseController {
 
     /**
      * 分页查看器材租借记录
-     * @param equipmentRecordsPageQueryDTO
+     * @param recordsPageQueryDTO
      * @return
      */
     @Operation(summary = "分页查询器材租借记录")
     @GetMapping("/page")
-    public Result<PageResult> page(EquipmentRecordsPageQueryDTO equipmentRecordsPageQueryDTO) {
-        log.info("查看租借记录:{}", equipmentRecordsPageQueryDTO);
-        PageResult pageResult = leaseService.page(equipmentRecordsPageQueryDTO);
+    public Result<PageResult> page(RecordsPageQueryDTO recordsPageQueryDTO) {
+        log.info("查看租借记录:{}", recordsPageQueryDTO);
+        PageResult pageResult = leaseService.page(recordsPageQueryDTO);
         return Result.success(pageResult);
     }
 
@@ -41,7 +41,7 @@ public class LeaseController {
      * @param id
      * @return
      */
-    @Operation(summary = "根基id查询租借记录")
+    @Operation(summary = "根据id查询租借记录")
     @GetMapping("/{id}")
     public Result<LeaseRecords> getById(@PathVariable Long id) {
         LeaseRecords reserveRecord = leaseService.getById(id);

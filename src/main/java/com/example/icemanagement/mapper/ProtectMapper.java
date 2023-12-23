@@ -1,6 +1,6 @@
 package com.example.icemanagement.mapper;
 
-import com.example.icemanagement.pojo.dto.EquipmentRecordsPageQueryDTO;
+import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.entity.MaintenanceRecord;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
@@ -18,11 +18,11 @@ public interface ProtectMapper {
 
     /**
      * 分页查看维护计划
-     * @param equipmentRecordsPageQueryDTO
+     * @param recordsPageQueryDTO
      * @return
      */
     @Select("select * from icemanagement.equipment_maintenance_records order by create_time desc")
-    Page<MaintenanceRecord> page(EquipmentRecordsPageQueryDTO equipmentRecordsPageQueryDTO);
+    Page<MaintenanceRecord> page(RecordsPageQueryDTO recordsPageQueryDTO);
 
 
     /**

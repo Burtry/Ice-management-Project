@@ -2,7 +2,7 @@ package com.example.icemanagement.service.ServiceImpl;
 
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.mapper.ProtectMapper;
-import com.example.icemanagement.pojo.dto.EquipmentRecordsPageQueryDTO;
+import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.dto.MaintenanceRecordDTO;
 import com.example.icemanagement.pojo.entity.MaintenanceRecord;
 import com.example.icemanagement.service.ProtectService;
@@ -36,13 +36,13 @@ public class ProtectServiceImpl implements ProtectService {
 
     /**
      * 分页查看维护计划
-     * @param equipmentRecordsPageQueryDTO
+     * @param recordsPageQueryDTO
      * @return
      */
     @Override
-    public PageResult page(EquipmentRecordsPageQueryDTO equipmentRecordsPageQueryDTO) {
-        PageHelper.startPage(equipmentRecordsPageQueryDTO.getPage(),equipmentRecordsPageQueryDTO.getPageSize());
-        Page<MaintenanceRecord> page = protectMapper.page(equipmentRecordsPageQueryDTO);
+    public PageResult page(RecordsPageQueryDTO recordsPageQueryDTO) {
+        PageHelper.startPage(recordsPageQueryDTO.getPage(), recordsPageQueryDTO.getPageSize());
+        Page<MaintenanceRecord> page = protectMapper.page(recordsPageQueryDTO);
         return new PageResult(page.getTotal(),page.getResult());
     }
 

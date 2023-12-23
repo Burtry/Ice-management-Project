@@ -3,10 +3,9 @@ package com.example.icemanagement.service.ServiceImpl;
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.mapper.EquipmentMapper;
 import com.example.icemanagement.pojo.dto.EquipmentDTO;
-import com.example.icemanagement.pojo.dto.EquipmentPageQueryDTO;
+import com.example.icemanagement.pojo.dto.EquipmentPageQueryDTOByName;
 import com.example.icemanagement.pojo.dto.EquipmentPageQueryDTOByType;
 import com.example.icemanagement.pojo.entity.Equipment;
-import com.example.icemanagement.pojo.entity.User;
 import com.example.icemanagement.service.EquipmentService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -28,12 +27,12 @@ public class EquipmentServiceImpl implements EquipmentService {
      * @return
      */
     @Override
-    public PageResult pageQuery(EquipmentPageQueryDTO equipmentPageQueryDTO) {
+    public PageResult pageQuery(EquipmentPageQueryDTOByName equipmentPageQueryDTOByName) {
         //开始分页查询
         //1.开始分页，调用pagehelper中的startPage方法，传进去页码和每页展示数
-        PageHelper.startPage(equipmentPageQueryDTO.getPage(), equipmentPageQueryDTO.getPageSize());
+        PageHelper.startPage(equipmentPageQueryDTOByName.getPage(), equipmentPageQueryDTOByName.getPageSize());
         //调用mapper层进行数据查询，返回一个Page类型的对象,通过这个对象就可以获得总记录数和返回结果
-        Page<Equipment> page = equipmentMapper.pageQuery(equipmentPageQueryDTO);
+        Page<Equipment> page = equipmentMapper.pageQuery(equipmentPageQueryDTOByName);
         List<Equipment> result = page.getResult();
         long total = page.getTotal();
         return new PageResult(total,result);

@@ -2,7 +2,7 @@ package com.example.icemanagement.controller.admin;
 
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.common.result.Result;
-import com.example.icemanagement.pojo.dto.EquipmentRecordsPageQueryDTO;
+import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.dto.MaintenanceRecordDTO;
 import com.example.icemanagement.service.ProtectService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -43,9 +43,9 @@ public class ProtectController {
      */
     @GetMapping("/page")
     @Operation(summary = "分页查询维护计划")
-    public Result<PageResult> page(EquipmentRecordsPageQueryDTO equipmentRecordsPageQueryDTO) {
+    public Result<PageResult> page(RecordsPageQueryDTO recordsPageQueryDTO) {
         log.info("分页查看维护计划");
-        PageResult pageResult = protectService.page(equipmentRecordsPageQueryDTO);
+        PageResult pageResult = protectService.page(recordsPageQueryDTO);
 
         return Result.success(pageResult);
     }

@@ -4,7 +4,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class EquipmentPageQueryDTO implements Serializable {
+public class EquipmentPageQueryDTOByName implements Serializable {
 
     //器材名称
     private String name;

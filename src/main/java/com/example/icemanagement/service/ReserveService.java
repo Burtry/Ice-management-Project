@@ -1,29 +1,21 @@
 package com.example.icemanagement.service;
 
-
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
-import com.example.icemanagement.pojo.entity.LeaseRecords;
+import com.example.icemanagement.pojo.entity.ReserveRecords;
 
-public interface LeaseService {
-
+public interface ReserveService {
     /**
-     * 分页查看租借记录
+     * 分页查询场地预约记录
      * @param recordsPageQueryDTO
      * @return
      */
     PageResult page(RecordsPageQueryDTO recordsPageQueryDTO);
 
     /**
-     * 修改租借状态
-     * @param status
-     */
-    void updateByStatus(Integer status,Long id);
-
-    /**
-     * 根据id查询此条租借记录
+     * 根据id查询场地预约记录
      * @param id
      * @return
      */
-    LeaseRecords getById(Long id);
+    ReserveRecords getById(Long id);
 }

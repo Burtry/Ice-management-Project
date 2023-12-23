@@ -2,8 +2,8 @@ package com.example.icemanagement.service.ServiceImpl;
 
 import com.example.icemanagement.common.exception.BaseException;
 import com.example.icemanagement.common.result.PageResult;
-import com.example.icemanagement.mapper.RecordMapper;
-import com.example.icemanagement.pojo.dto.EquipmentRecordsPageQueryDTO;
+import com.example.icemanagement.mapper.RecordsMapper;
+import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.entity.LeaseRecords;
 import com.example.icemanagement.service.LeaseService;
 import com.github.pagehelper.Page;
@@ -17,19 +17,19 @@ import java.time.LocalDateTime;
 public class LeaseServiceImpl implements LeaseService {
 
     @Autowired
-    private RecordMapper recordsMapper;
+    private RecordsMapper recordsMapper;
 
 
 
     /**
      * 分页查看器材租借记录
-     * @param equipmentRecordsPageQueryDTO
+     * @param recordsPageQueryDTO
      * @return
      */
     @Override
-    public PageResult page(EquipmentRecordsPageQueryDTO equipmentRecordsPageQueryDTO) {
-        PageHelper.startPage(equipmentRecordsPageQueryDTO.getPage(),equipmentRecordsPageQueryDTO.getPageSize());
-        Page<LeaseRecords> page = recordsMapper.page();
+    public PageResult page(RecordsPageQueryDTO recordsPageQueryDTO) {
+        PageHelper.startPage(recordsPageQueryDTO.getPage(), recordsPageQueryDTO.getPageSize());
+        Page<LeaseRecords> page = recordsMapper.leasePage();
         return new PageResult(page.getTotal(),page.getResult());
     }
 
@@ -44,7 +44,7 @@ public class LeaseServiceImpl implements LeaseService {
         reserveRecord.setId(id);
         reserveRecord.setStatus(status);
         reserveRecord.setUpdateTime(LocalDateTime.now());
-        recordsMapper.update(reserveRecord);
+        recordsMapper.leaseUpdate(reserveRecord);
     }
 
     /**
@@ -54,7 +54,7 @@ public class LeaseServiceImpl implements LeaseService {
      */
     @Override
     public LeaseRecords getById(Long id) {
-        LeaseRecords reserveRecord = recordsMapper.getById(id);
+        LeaseRecords reserveRecord = recordsMapper.leaseGetById(id);
         if (reserveRecord == null) {
             throw new BaseException("租借记录不存在");
         }

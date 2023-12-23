@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.icemanagement.mapper.RecordMapper">
+<mapper namespace="com.example.icemanagement.mapper.RecordsMapper">
 
-    <update id="update">
+    <update id="leaseUpdate">
         update icemanagement.equipment_rental_records
         <set>
             <if test="equipmentId != null">equipment_id = #{equipmentId},</if>

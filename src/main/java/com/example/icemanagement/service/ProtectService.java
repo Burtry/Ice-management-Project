@@ -1,7 +1,7 @@
 package com.example.icemanagement.service;
 
 import com.example.icemanagement.common.result.PageResult;
-import com.example.icemanagement.pojo.dto.EquipmentRecordsPageQueryDTO;
+import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.dto.MaintenanceRecordDTO;
 
 import java.util.List;
@@ -15,10 +15,10 @@ public interface ProtectService {
 
     /**
      * 分页查看维护计划
-     * @param equipmentRecordsPageQueryDTO
+     * @param recordsPageQueryDTO
      * @return
      */
-    PageResult page(EquipmentRecordsPageQueryDTO equipmentRecordsPageQueryDTO);
+    PageResult page(RecordsPageQueryDTO recordsPageQueryDTO);
 
     /**
      * 修改维护计划

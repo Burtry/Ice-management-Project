@@ -77,7 +77,6 @@ public class EquipmentServiceImpl implements EquipmentService {
         //修改器材信息
         equipmentMapper.update(equipment);
     }
-
     /**
      * 新增器材
      * @param
@@ -86,7 +85,8 @@ public class EquipmentServiceImpl implements EquipmentService {
     public void insert(EquipmentDTO equipmentDTO) {
         Equipment equipment = new Equipment();
         BeanUtils.copyProperties(equipmentDTO,equipment);
-
+        //将新增的器材状态都设置成0未借出状态
+        equipment.setStatus(0);
         equipment.setCreateTime(LocalDateTime.now());
         equipment.setUpdateTime(LocalDateTime.now());
         equipmentMapper.insert(equipment);

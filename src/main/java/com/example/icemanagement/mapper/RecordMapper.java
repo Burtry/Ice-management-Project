@@ -11,10 +11,19 @@ public interface RecordMapper {
 
     /**
      * 查询租借记录
-     * @param equipmentRecordsPageQueryDTO
+     * @param
      * @return
      */
     @Select("select * from icemanagement.equipment_rental_records order by rental_time desc")
-    Page<ReserveRecords> page(EquipmentRecordsPageQueryDTO equipmentRecordsPageQueryDTO);
+    Page<ReserveRecords> page();
 
+
+    @Select("select * from icemanagement.equipment_rental_records where id = #{id}")
+    ReserveRecords getById(Long id);
+
+    /**
+     * 更新租借信息
+     * @param reserveRecord
+     */
+    void update(ReserveRecords reserveRecord);
 }

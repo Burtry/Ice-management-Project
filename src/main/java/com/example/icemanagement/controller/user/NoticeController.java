@@ -5,3 +5,4 @@ package com.example.icemanagement.controller.user;
  */
 public class NoticeController {
 }
+

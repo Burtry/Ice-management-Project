@@ -16,13 +16,13 @@ public class ReserveRecords {
     //器材id
     private Long equipmentId;
 
-    //租借时间
+    //租借时间      ->相当于创建时间
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime rentalDatTime;
+    private LocalDateTime rentalTime;
 
     //归还日期
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime returnDateTime;
+    private LocalDateTime returnTime;
 
     //租借记录更新时间
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

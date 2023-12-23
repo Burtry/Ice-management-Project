@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * 租借管理
+ * 器材租借管理
  */
 @RestController
 @Slf4j

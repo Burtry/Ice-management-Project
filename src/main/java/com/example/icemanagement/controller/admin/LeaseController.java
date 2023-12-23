@@ -3,8 +3,8 @@ package com.example.icemanagement.controller.admin;
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.common.result.Result;
 import com.example.icemanagement.pojo.dto.EquipmentRecordsPageQueryDTO;
-import com.example.icemanagement.pojo.entity.ReserveRecords;
-import com.example.icemanagement.service.ReserveService;
+import com.example.icemanagement.pojo.entity.LeaseRecords;
+import com.example.icemanagement.service.LeaseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @Slf4j
-@RequestMapping("/admin/reserve")
+@RequestMapping("/admin/lease")
 @Tag(name = "管理端")
-public class ReserveController {
+public class LeaseController {
 
     @Autowired
-    private ReserveService reserveService;
+    private LeaseService leaseService;
 
     /**
      * 分页查看器材租借记录
@@ -32,7 +32,7 @@ public class ReserveController {
     @GetMapping("/page")
     public Result<PageResult> page(EquipmentRecordsPageQueryDTO equipmentRecordsPageQueryDTO) {
         log.info("查看租借记录:{}", equipmentRecordsPageQueryDTO);
-        PageResult pageResult = reserveService.page(equipmentRecordsPageQueryDTO);
+        PageResult pageResult = leaseService.page(equipmentRecordsPageQueryDTO);
         return Result.success(pageResult);
     }
 
@@ -43,8 +43,8 @@ public class ReserveController {
      */
     @Operation(summary = "根基id查询租借记录")
     @GetMapping("/{id}")
-    public Result<ReserveRecords> getById(@PathVariable Long id) {
-        ReserveRecords reserveRecord =reserveService.getById(id);
+    public Result<LeaseRecords> getById(@PathVariable Long id) {
+        LeaseRecords reserveRecord = leaseService.getById(id);
         return Result.success(reserveRecord);
     }
 
@@ -58,7 +58,7 @@ public class ReserveController {
     @PutMapping("/status/{status}/{id}")
     public Result updateByStatus(@PathVariable Integer status, @PathVariable Long id) {
         log.info("器材租借状态修改:{},id{}",status,id);
-        reserveService.updateByStatus(status,id);
+        leaseService.updateByStatus(status,id);
         return Result.success();
     }
 

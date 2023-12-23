@@ -1,12 +1,11 @@
 package com.example.icemanagement.pojo.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
-public class ReserveRecords {
+public class LeaseRecords {
     //租借记录id
     private Long id;
 

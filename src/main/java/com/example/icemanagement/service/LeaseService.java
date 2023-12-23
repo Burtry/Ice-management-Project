@@ -3,9 +3,9 @@ package com.example.icemanagement.service;
 
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.pojo.dto.EquipmentRecordsPageQueryDTO;
-import com.example.icemanagement.pojo.entity.ReserveRecords;
+import com.example.icemanagement.pojo.entity.LeaseRecords;
 
-public interface ReserveService {
+public interface LeaseService {
 
     /**
      * 分页查看租借记录
@@ -25,5 +25,5 @@ public interface ReserveService {
      * @param id
      * @return
      */
-    ReserveRecords getById(Long id);
+    LeaseRecords getById(Long id);
 }

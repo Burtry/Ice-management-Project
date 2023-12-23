@@ -4,8 +4,8 @@ import com.example.icemanagement.common.exception.BaseException;
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.mapper.RecordMapper;
 import com.example.icemanagement.pojo.dto.EquipmentRecordsPageQueryDTO;
-import com.example.icemanagement.pojo.entity.ReserveRecords;
-import com.example.icemanagement.service.ReserveService;
+import com.example.icemanagement.pojo.entity.LeaseRecords;
+import com.example.icemanagement.service.LeaseService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class ReserveServiceImpl implements ReserveService {
+public class LeaseServiceImpl implements LeaseService {
 
     @Autowired
     private RecordMapper recordsMapper;
@@ -29,7 +29,7 @@ public class ReserveServiceImpl implements ReserveService {
     @Override
     public PageResult page(EquipmentRecordsPageQueryDTO equipmentRecordsPageQueryDTO) {
         PageHelper.startPage(equipmentRecordsPageQueryDTO.getPage(),equipmentRecordsPageQueryDTO.getPageSize());
-        Page<ReserveRecords> page = recordsMapper.page();
+        Page<LeaseRecords> page = recordsMapper.page();
         return new PageResult(page.getTotal(),page.getResult());
     }
 
@@ -40,7 +40,7 @@ public class ReserveServiceImpl implements ReserveService {
 
     @Override
     public void updateByStatus(Integer status,Long id) {
-        ReserveRecords reserveRecord = new ReserveRecords();
+        LeaseRecords reserveRecord = new LeaseRecords();
         reserveRecord.setId(id);
         reserveRecord.setStatus(status);
         reserveRecord.setUpdateTime(LocalDateTime.now());
@@ -53,8 +53,8 @@ public class ReserveServiceImpl implements ReserveService {
      * @return
      */
     @Override
-    public ReserveRecords getById(Long id) {
-        ReserveRecords reserveRecord = recordsMapper.getById(id);
+    public LeaseRecords getById(Long id) {
+        LeaseRecords reserveRecord = recordsMapper.getById(id);
         if (reserveRecord == null) {
             throw new BaseException("租借记录不存在");
         }

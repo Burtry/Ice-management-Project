@@ -11,6 +11,8 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class ReserveServiceImpl implements ReserveService {
 
@@ -43,5 +45,19 @@ public class ReserveServiceImpl implements ReserveService {
             throw new BaseException("该预约记录不存在");
         }
         return reserveRecords;
+    }
+
+    /**
+     * 根据id修改场地状态
+     * @param status
+     * @param id
+     */
+    @Override
+    public void updateByStatus(Integer status, Long id) {
+        ReserveRecords reserveRecords = new ReserveRecords();
+        reserveRecords.setUpdateTime(LocalDateTime.now());
+        reserveRecords.setId(id);
+        reserveRecords.setStatus(status);
+        recordsMapper.reserveUpdate(reserveRecords);
     }
 }

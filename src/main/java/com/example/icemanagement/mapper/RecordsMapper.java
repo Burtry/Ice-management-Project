@@ -48,4 +48,10 @@ public interface RecordsMapper {
      */
     @Select("select * from icemanagement.space_reserve_records where id = #{id}")
     ReserveRecords reserveGetById(Long id);
+
+    /**
+     * 修改场地预约信息
+     * @param reserveRecords
+     */
+    void reserveUpdate(ReserveRecords reserveRecords);
 }

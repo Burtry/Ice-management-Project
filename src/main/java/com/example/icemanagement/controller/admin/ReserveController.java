@@ -10,10 +10,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 场地预约管理
@@ -43,6 +40,20 @@ public class ReserveController {
         ReserveRecords reserveRecords = reserveService.getById(id);
         return Result.success(reserveRecords);
     }
+
+    /**
+     * 场地预约状态修改 1 agree ；0 cancel
+     * @param status 租借状态
+     * @return
+     */
+    @Operation(summary = "修改预约记录中预约状态")
+    @PutMapping("/status/{status}/{id}")
+    public Result updateByStatus(@PathVariable Integer status, @PathVariable Long id) {
+        log.info("场地预约状态修改:{},id{}",status,id);
+        reserveService.updateByStatus(status,id);
+        return Result.success();
+    }
+
 
 
 }

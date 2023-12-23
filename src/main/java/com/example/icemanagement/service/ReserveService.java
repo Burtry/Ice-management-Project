@@ -18,4 +18,11 @@ public interface ReserveService {
      * @return
      */
     ReserveRecords getById(Long id);
+
+    /**
+     * 根据id修改场地状态
+     * @param status
+     * @param id
+     */
+    void updateByStatus(Integer status, Long id);
 }

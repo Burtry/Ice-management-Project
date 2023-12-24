@@ -2,12 +2,10 @@ package com.example.icemanagement.controller.user;
 
 import com.example.icemanagement.common.result.Result;
 import com.example.icemanagement.pojo.dto.ReserveRecordsDTO;
-import com.example.icemanagement.pojo.entity.ReserveRecords;
 import com.example.icemanagement.service.ReserveService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Insert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;

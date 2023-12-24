@@ -2,6 +2,7 @@ package com.example.icemanagement.service;
 
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
+import com.example.icemanagement.pojo.dto.ReserveRecordsDTO;
 import com.example.icemanagement.pojo.entity.ReserveRecords;
 
 public interface ReserveService {
@@ -25,4 +26,11 @@ public interface ReserveService {
      * @param id
      */
     void updateByStatus(Integer status, Long id);
+
+
+    /**
+     * 用户端创建预约
+     * @param reserveRecordsDTO
+     */
+    void createReserve(ReserveRecordsDTO reserveRecordsDTO);
 }

@@ -1,15 +1,20 @@
 package com.example.icemanagement.service.ServiceImpl;
 
+import com.example.icemanagement.common.constant.PasswordConstant;
 import com.example.icemanagement.common.exception.AccountExitException;
+import com.example.icemanagement.common.exception.AccountNotFoundException;
 import com.example.icemanagement.common.exception.PasswordErrorException;
 import com.example.icemanagement.mapper.UserMapper;
+import com.example.icemanagement.pojo.dto.UserLoginDTO;
 import com.example.icemanagement.pojo.dto.UserRegisterDTO;
+import com.example.icemanagement.pojo.entity.Admin;
 import com.example.icemanagement.pojo.entity.User;
 import com.example.icemanagement.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,20 +38,28 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 用户登录
-     * @param userAccount
-     * @param userPassword
      * @return
      */
     @Override
-    public User userLogin(String userAccount, String userPassword) {
+    public User userLogin(UserLoginDTO userLoginDTO) {
+        String username = userLoginDTO.getUserName();
+        String password = userLoginDTO.getPassword();
+        User user = userMapper.getByUsername(username);
 
-        User user = userMapper.getByAccountAndPassword(userAccount,userPassword);
-
+        //处理各种异常情况（用户名不存在、密码不对）
         if (user == null) {
-            log.info("登录失败，账号或密码错误！");
-            return null;
+            throw  new AccountNotFoundException("用户不存在");
         }
-        return  user;
+        // 解密
+        password = DigestUtils.md5DigestAsHex(password.getBytes());
+
+        //密码对比
+        if(!user.getPassword().equals(password)) {
+            //密码错误
+            throw new AccountExitException("密码错误");
+        }
+
+        return user;
 
     }
 
@@ -56,20 +69,25 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void userRegister(UserRegisterDTO userRegisterDTO) {
-        User user = userMapper.getByAccountAndPassword(userRegisterDTO.getAccount(), userRegisterDTO.getPassword());
-        if (!Objects.equals(userRegisterDTO.getPassword(), userRegisterDTO.getPasswordAgain())) {
-            throw new PasswordErrorException("密码不一致");
-        }
-
+        String userName = userRegisterDTO.getUserName();
+        User user = userMapper.getByUsername(userName);
+        //首先根据用户名来查询是否存在这个用户，如果存在，则抛出账号已存在异常
         if(user != null) {
             throw new AccountExitException("账号已存在");
         }
+        //然后，不存在，检查两次密码是否一致，不一致则抛出密码不一致异常
+        if (!Objects.equals(userRegisterDTO.getPassword(), userRegisterDTO.getPasswordAgain())) {
+            throw new PasswordErrorException("密码不一致");
+        }
+        //创建新用户
+        User newUser = new User();
+        BeanUtils.copyProperties(userRegisterDTO,newUser);
+        //对密码进行md5加密
+        newUser.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
 
-        User newUSer = new User();
-        BeanUtils.copyProperties(userRegisterDTO,newUSer);
-        newUSer.setCreateTime(LocalDateTime.now());
-        newUSer.setUpdateTime(LocalDateTime.now());
-        userMapper.register(newUSer);
+        newUser.setCreateTime(LocalDateTime.now());
+        newUser.setUpdateTime(LocalDateTime.now());
+        userMapper.register(newUser);
 
     }
 }

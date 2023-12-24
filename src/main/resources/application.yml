@@ -37,7 +37,8 @@ ice:
   jwt:
     admin-secret-key: burtry
     admin-ttl: 72000000
-    admin-token-name: token
-    user-secret-key: burtry
-    user-token-name: authentication
+    admin-token-name: adminToken
+
+    user-secret-key: cs
+    user-token-name: userToken
     user-ttl: 72000000

@@ -54,4 +54,10 @@ public interface RecordsMapper {
      * @param reserveRecords
      */
     void reserveUpdate(ReserveRecords reserveRecords);
+
+    /**
+     * 用户创建预约
+     * @param reserveRecords
+     */
+    void createReserve(ReserveRecords reserveRecords);
 }

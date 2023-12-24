@@ -7,7 +7,7 @@ public class UserRegisterDTO {
     /**
      * 账号
      */
-    private String account;
+    private String userName;
     /**
      * 密码
      */
@@ -19,8 +19,7 @@ public class UserRegisterDTO {
     /**
      * 用户昵称
      */
-    private String userName;
-
+    private String name;
     /**
      * 性别
      */

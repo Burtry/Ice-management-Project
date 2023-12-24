@@ -48,6 +48,7 @@ public class JwtTokenUserInterceptor implements HandlerInterceptor {
         try {
             log.info("jwt校验:{}", token);
             Claims claims = JwtUtil.parseJWT(jwtProperties.getUserSecretKey(), token);
+
             Long userId = Long.valueOf(claims.get(JwtClaimsConstant.USER_ID).toString());
             //将id存储到threadLocal的存储空间中去，便于service层使用
             BaseContext.setCurrentId(userId);
@@ -55,8 +56,10 @@ public class JwtTokenUserInterceptor implements HandlerInterceptor {
             //3、通过，放行
             return true;
         } catch (Exception ex) {
+            log.error("JWT解析异常: {}", ex.getMessage());
             //4、不通过，响应401状态码
             response.setStatus(401);
+
             return false;
         }
     }

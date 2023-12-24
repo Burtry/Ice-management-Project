@@ -15,8 +15,14 @@ public class ReserveRecords {
     //场地id
     private Long spaceId;
 
-    //预约时间      ->相当于创建时间
+    //预约时间      ->
     private LocalDateTime reserveTime;
+
+    //预约时长  预约时长内的场地不能再预约
+    private Integer duration;
+
+    //创建时间
+    private LocalDateTime createTime;
 
     //更新时间
     private LocalDateTime updateTime;

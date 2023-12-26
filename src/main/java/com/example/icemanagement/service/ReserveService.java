@@ -33,4 +33,12 @@ public interface ReserveService {
      * @param reserveRecordsDTO
      */
     void createReserve(ReserveRecordsDTO reserveRecordsDTO);
+
+    /**
+     * 分页查看用户预约
+     * @param recordsPageQueryDTO
+     * @return
+     */
+    PageResult list(RecordsPageQueryDTO recordsPageQueryDTO);
+
 }

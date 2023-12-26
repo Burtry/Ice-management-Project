@@ -34,4 +34,18 @@
             (user_id, space_id, reserve_time, duration, update_time,create_time, status) VALUES
             (#{userId},#{spaceId},#{reserveTime},#{duration},#{updateTime},#{createTime},#{status})
     </insert>
+    <select id="listReserveRecords" resultType="com.example.icemanagement.pojo.vo.ReserveRecordsVO">
+        select s.space_name,
+               u.name,
+               u.sex,
+               u.phone,
+               u.id_number,
+               rr.reserve_time,
+               rr.duration,
+               rr.create_time
+        from icemanagement.space_reserve_records rr
+                 join icemanagement.user u on rr.user_id = u.id
+                 join icemanagement.space s on rr.space_id = s.id
+        order by create_time DESC
+    </select>
 </mapper>

@@ -1,8 +1,10 @@
 package com.example.icemanagement.mapper;
 
+import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.entity.LeaseRecords;
 import com.example.icemanagement.pojo.entity.ReserveRecords;
 import com.example.icemanagement.pojo.entity.Space;
+import com.example.icemanagement.pojo.vo.ReserveRecordsVO;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -60,4 +62,11 @@ public interface RecordsMapper {
      * @param reserveRecords
      */
     void createReserve(ReserveRecords reserveRecords);
+
+    /**
+     * 分页查看用户预约
+     * @param recordsPageQueryDTO
+     * @return
+     */
+    Page<ReserveRecordsVO> listReserveRecords(RecordsPageQueryDTO recordsPageQueryDTO);
 }

@@ -6,6 +6,7 @@ import com.example.icemanagement.mapper.RecordsMapper;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.dto.ReserveRecordsDTO;
 import com.example.icemanagement.pojo.entity.ReserveRecords;
+import com.example.icemanagement.pojo.vo.ReserveRecordsVO;
 import com.example.icemanagement.service.ReserveService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -85,5 +86,17 @@ public class ReserveServiceImpl implements ReserveService {
         Long id = reserveRecords.getId();
         log.info("insert语句生成的主键值id:{}",id);
 
+    }
+
+    /**
+     * 分页查看用户预约
+     * @param recordsPageQueryDTO
+     * @return
+     */
+    @Override
+    public PageResult list(RecordsPageQueryDTO recordsPageQueryDTO) {
+        PageHelper.startPage(recordsPageQueryDTO.getPage(),recordsPageQueryDTO.getPageSize());
+        Page<ReserveRecordsVO> page = recordsMapper.listReserveRecords(recordsPageQueryDTO);
+        return new PageResult(page.getTotal(),page.getResult());
     }
 }

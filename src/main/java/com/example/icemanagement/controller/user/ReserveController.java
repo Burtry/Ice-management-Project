@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 
 
 /**
@@ -46,14 +47,16 @@ public class ReserveController {
     }
 
     /**
-     * 分页查看用户预约
+     * 根据用户id查看用户预约
      * @return
      */
     @GetMapping("/list")
     @Operation(summary = "分页查看预约")
-    public Result<PageResult> listReserveRecords(RecordsPageQueryDTO recordsPageQueryDTO) {
-        log.info("分页查询用户预约:{}",recordsPageQueryDTO);
-        PageResult pageResult = reserveService.list(recordsPageQueryDTO);
-        return Result.success(pageResult);
+    public Result<List<ReserveRecordsVO>> listReserveRecords(Long id) {
+        log.info("根据用户id分页查询用户预约:{}",id);
+        List<ReserveRecordsVO> list = reserveService.list(id);
+        return Result.success(list);
     }
+
+
 }

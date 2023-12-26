@@ -9,6 +9,8 @@ import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface RecordsMapper {
 
@@ -64,9 +66,8 @@ public interface RecordsMapper {
     void createReserve(ReserveRecords reserveRecords);
 
     /**
-     * 分页查看用户预约
-     * @param recordsPageQueryDTO
+     * 根据id分页查看用户预约
      * @return
      */
-    Page<ReserveRecordsVO> listReserveRecords(RecordsPageQueryDTO recordsPageQueryDTO);
+    List<ReserveRecordsVO> listReserveRecords(Long id);
 }

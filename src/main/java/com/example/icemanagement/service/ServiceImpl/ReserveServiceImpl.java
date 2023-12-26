@@ -2,6 +2,7 @@ package com.example.icemanagement.service.ServiceImpl;
 
 import com.example.icemanagement.common.exception.BaseException;
 import com.example.icemanagement.common.result.PageResult;
+import com.example.icemanagement.common.result.Result;
 import com.example.icemanagement.mapper.RecordsMapper;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.dto.ReserveRecordsDTO;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -87,16 +89,14 @@ public class ReserveServiceImpl implements ReserveService {
         log.info("insert语句生成的主键值id:{}",id);
 
     }
-
     /**
-     * 分页查看用户预约
-     * @param recordsPageQueryDTO
+     * 根据用户id查看用户预约
+     * @param
      * @return
      */
     @Override
-    public PageResult list(RecordsPageQueryDTO recordsPageQueryDTO) {
-        PageHelper.startPage(recordsPageQueryDTO.getPage(),recordsPageQueryDTO.getPageSize());
-        Page<ReserveRecordsVO> page = recordsMapper.listReserveRecords(recordsPageQueryDTO);
-        return new PageResult(page.getTotal(),page.getResult());
+    public List<ReserveRecordsVO> list(Long id) {
+       return recordsMapper.listReserveRecords(id);
     }
+
 }

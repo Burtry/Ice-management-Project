@@ -4,6 +4,9 @@ import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.dto.ReserveRecordsDTO;
 import com.example.icemanagement.pojo.entity.ReserveRecords;
+import com.example.icemanagement.pojo.vo.ReserveRecordsVO;
+
+import java.util.List;
 
 public interface ReserveService {
     /**
@@ -35,10 +38,10 @@ public interface ReserveService {
     void createReserve(ReserveRecordsDTO reserveRecordsDTO);
 
     /**
-     * 分页查看用户预约
-     * @param recordsPageQueryDTO
+     * 查看用户预约
+     * @param
      * @return
      */
-    PageResult list(RecordsPageQueryDTO recordsPageQueryDTO);
+    List<ReserveRecordsVO> list(Long id);
 
 }

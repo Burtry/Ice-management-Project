@@ -99,4 +99,23 @@ public class ReserveServiceImpl implements ReserveService {
        return recordsMapper.listReserveRecords(id);
     }
 
+    /**
+     * 取消预约
+     * @param id
+     */
+    @Override
+    public void cancel(Long id) {
+        ReserveRecords reserveRecord = recordsMapper.reserveGetById(id);
+        if (reserveRecord == null) {
+            throw new BaseException("预约信息不存在!");
+        }
+        //设置场地状态为0(未预约)
+        reserveRecord.setStatus(0);
+        //更新时间
+        reserveRecord.setUpdateTime(LocalDateTime.now());
+
+        reserveRecord.setRemark("用户取消预约");
+        recordsMapper.reserveUpdate(reserveRecord);
+    }
+
 }

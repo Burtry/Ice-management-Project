@@ -12,10 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -56,6 +53,19 @@ public class ReserveController {
         log.info("根据用户id分页查询用户预约:{}",id);
         List<ReserveRecordsVO> list = reserveService.list(id);
         return Result.success(list);
+    }
+
+    /**
+     * 取消预约
+     * @param id 预约id
+     * @return
+     */
+    @PutMapping("/cancel/{id}")
+    @Operation(summary = "取消预约")
+    public Result cancel(@PathVariable Long id) {
+        log.info("取消预约：{}",id);
+        reserveService.cancel(id);
+        return Result.success();
     }
 
 

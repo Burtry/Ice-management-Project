@@ -17,7 +17,11 @@ public class ReserveRecordsDTO {
 
     //预约时间
     private LocalDateTime reserveTime;
+
     //预约时长
     private Integer duration;
+
+    //备注
+    private String remark;
 
 }

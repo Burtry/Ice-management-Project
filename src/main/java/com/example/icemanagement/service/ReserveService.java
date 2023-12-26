@@ -44,4 +44,9 @@ public interface ReserveService {
      */
     List<ReserveRecordsVO> list(Long id);
 
+    /**
+     * 取消预约
+     * @param id
+     */
+    void cancel(Long id);
 }

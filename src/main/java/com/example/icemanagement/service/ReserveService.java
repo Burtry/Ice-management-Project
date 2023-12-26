@@ -49,4 +49,9 @@ public interface ReserveService {
      * @param id
      */
     void cancel(Long id);
+
+    /**
+     * 编辑预约
+     */
+    void update(ReserveRecordsDTO reserveRecordsDTO);
 }

@@ -43,7 +43,8 @@
                u.id_number,
                rr.reserve_time,
                rr.duration,
-               rr.create_time
+               rr.create_time,
+               rr.remark
         from icemanagement.space_reserve_records rr
                  left join icemanagement.user u on rr.user_id = u.id
                 join icemanagement.space s on rr.space_id = s.id

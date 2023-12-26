@@ -3,6 +3,7 @@ package com.example.icemanagement.controller.admin;
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.common.result.Result;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
+import com.example.icemanagement.pojo.dto.ReserveRecordsDTO;
 import com.example.icemanagement.pojo.entity.LeaseRecords;
 import com.example.icemanagement.pojo.entity.ReserveRecords;
 import com.example.icemanagement.service.ReserveService;
@@ -41,6 +42,19 @@ public class ReserveController {
         log.info("根据id查询预约记录:{}",id);
         ReserveRecords reserveRecords = reserveService.getById(id);
         return Result.success(reserveRecords);
+    }
+
+
+    /**
+     * 管理端编辑预约
+     * @return
+     */
+    @PutMapping("/update")
+    @Operation(summary = "编辑预约")
+    public Result update(@RequestBody ReserveRecordsDTO reserveRecordsDTO) {
+        log.info("根据id编辑预约:{}",reserveRecordsDTO);
+        reserveService.update(reserveRecordsDTO);
+        return Result.success();
     }
 
     /**

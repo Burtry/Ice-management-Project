@@ -28,6 +28,9 @@ public class ReserveRecordsVO {
     //预约时长
     private Integer duration;
 
+    //备注
+    private String remark;
+
     //创建时间
     private LocalDateTime createTime;
 }

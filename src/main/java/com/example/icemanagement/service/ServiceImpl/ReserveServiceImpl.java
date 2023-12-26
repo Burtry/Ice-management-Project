@@ -118,4 +118,17 @@ public class ReserveServiceImpl implements ReserveService {
         recordsMapper.reserveUpdate(reserveRecord);
     }
 
+    /**
+     * 管理编辑预约
+     */
+    @Override
+    public void update(ReserveRecordsDTO reserveRecordsDTO) {
+
+        ReserveRecords reserveRecord = recordsMapper.reserveGetById(reserveRecordsDTO.getId());
+        BeanUtils.copyProperties(reserveRecordsDTO,reserveRecord);
+        reserveRecord.setUpdateTime(LocalDateTime.now());
+        recordsMapper.reserveUpdate(reserveRecord);
+
+    }
+
 }

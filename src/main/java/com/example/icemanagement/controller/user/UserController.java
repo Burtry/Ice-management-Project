@@ -5,9 +5,11 @@ import com.example.icemanagement.common.utils.JwtUtil;
 import com.example.icemanagement.config.properties.JwtProperties;
 import com.example.icemanagement.pojo.dto.UserLoginDTO;
 import com.example.icemanagement.pojo.dto.UserRegisterDTO;
+import com.example.icemanagement.pojo.dto.UserUpdateDTO;
 import com.example.icemanagement.pojo.entity.User;
 import com.example.icemanagement.pojo.vo.AdminLoginVO;
 import com.example.icemanagement.pojo.vo.UserLoginVO;
+import com.example.icemanagement.pojo.vo.UserVO;
 import com.example.icemanagement.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -44,7 +46,7 @@ public class UserController {
     @Operation(summary = "用户登录")
     @PostMapping("/login")
     public Result<UserLoginVO> userLogin(@RequestBody UserLoginDTO userLoginDTO) {
-        log.info("用户登录:{}",userLoginDTO);
+        log.info("用户登录:{}",userLoginDTO.getUserName());
         User user = userService.userLogin(userLoginDTO);
         //登录成功后，生成jwt令牌
         Map<String, Object> claims = new HashMap<>();
@@ -72,5 +74,22 @@ public class UserController {
         userService.userRegister(userRegisterDTO);
         return Result.success();
     }
+
+    @GetMapping("/person/{id}")
+    @Operation(summary = "个人中心")
+    public Result<UserVO> personalCenter(@PathVariable Long id) {
+        log.info("查看用户个人信息{}",id);
+        UserVO user = userService.getPersonById(id);
+        return Result.success(user);
+    }
+
+    @PutMapping("/person")
+    @Operation(summary = "修改个人信息")
+    public Result update(@RequestBody UserUpdateDTO userUpdateDTO) {
+        log.info("修改个人信息:{}",userUpdateDTO);
+        userService.update(userUpdateDTO);
+        return Result.success();
+    }
+
 
 }

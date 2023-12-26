@@ -11,7 +11,7 @@ public class ReserveRecordsVO {
     private String spaceName;
 
     //预约用户名(昵称)
-    private String name;
+    private String userName;
 
     //用户性别
     private String sex;

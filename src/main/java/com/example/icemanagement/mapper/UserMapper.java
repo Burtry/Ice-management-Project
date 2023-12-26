@@ -2,6 +2,7 @@ package com.example.icemanagement.mapper;
 
 import com.example.icemanagement.pojo.entity.Admin;
 import com.example.icemanagement.pojo.entity.User;
+import com.example.icemanagement.pojo.vo.UserVO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -31,5 +32,21 @@ public interface UserMapper {
     void register(User newUser);
 
 
+    /**
+     * 根据id获取前台展示数据
+     * @param id
+     * @return
+     */
+    @Select("select user_name,name,sex,id_number,phone from icemanagement.user where id = #{id}")
+    UserVO getUserVOById(Long id);
 
+
+    @Select("select * from icemanagement.user where id = #{id}")
+    User getById(Long id);
+
+    /**
+     * 修改用户信息
+     * @param user
+     */
+    void update(User user);
 }

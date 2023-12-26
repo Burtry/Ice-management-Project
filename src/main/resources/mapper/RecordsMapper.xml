@@ -37,7 +37,7 @@
     </insert>
     <select id="listReserveRecords" resultType="com.example.icemanagement.pojo.vo.ReserveRecordsVO">
         select s.space_name,
-               u.name,
+               u.user_name,
                u.sex,
                u.phone,
                u.id_number,

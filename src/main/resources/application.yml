@@ -29,7 +29,7 @@ knife4j:
     terms-of-service-url: https://stackoverflow.com/
     group:
       test1:
-        group-name: 分组名称
+#        group-name: 分组名称
         api-rule: package
         api-rule-resources:
           - com.knife4j.demo.new3

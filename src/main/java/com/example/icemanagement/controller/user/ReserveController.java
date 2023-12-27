@@ -34,7 +34,7 @@ public class ReserveController {
      */
     @PostMapping("/createReserve")
     @Operation(summary = "创建预约")
-    public Result<ReserveRecordsDTO> createReservation(ReserveRecordsDTO reserveRecordsDTO) {
+    public Result<ReserveRecordsDTO> createReservation(@RequestBody ReserveRecordsDTO reserveRecordsDTO) {
         log.info("用户端创建预约:{}",reserveRecordsDTO);
         reserveService.createReserve(reserveRecordsDTO);
         return Result.success();

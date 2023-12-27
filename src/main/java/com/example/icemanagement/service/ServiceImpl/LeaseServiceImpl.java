@@ -4,6 +4,7 @@ import com.example.icemanagement.common.exception.BaseException;
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.mapper.RecordsMapper;
 import com.example.icemanagement.pojo.dto.HistoryPageQueryDTO;
+import com.example.icemanagement.pojo.dto.LeaseRecordsDTO;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.entity.LeaseRecords;
 import com.example.icemanagement.pojo.vo.LeaseRecordsVO;
@@ -11,13 +12,17 @@ import com.example.icemanagement.pojo.vo.ReserveRecordsVO;
 import com.example.icemanagement.service.LeaseService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Slf4j
 public class LeaseServiceImpl implements LeaseService {
 
     @Autowired
@@ -83,5 +88,25 @@ public class LeaseServiceImpl implements LeaseService {
         List<LeaseRecordsVO> leaseRecordsVOs = recordsMapper.listLeaseRecords(historyPageQueryDTO.getUserId());
         Integer total = recordsMapper.leaseGetTotalByUserId(historyPageQueryDTO.getUserId());
         return new PageResult(total,leaseRecordsVOs);
+    }
+
+    /**
+     * 创建租借信息
+     * @param leaseRecordsDTO
+     */
+    @Override
+    public void createLease(LeaseRecordsDTO leaseRecordsDTO) {
+        LeaseRecords leaseRecords = new LeaseRecords();
+        BeanUtils.copyProperties(leaseRecordsDTO,leaseRecords);
+        leaseRecords.setCreateTime(LocalDateTime.now());
+        leaseRecords.setUpdateTime(LocalDateTime.now());
+
+        //将此器材的状态设置为1，已借出
+        leaseRecords.setStatus(1);
+        recordsMapper.createLease(leaseRecords);
+
+        //获取insert语句生成的主键值
+        Long id = leaseRecords.getId();
+        log.info("insert语句生成的主键值id:{}",id);
     }
 }

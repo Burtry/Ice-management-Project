@@ -101,5 +101,9 @@ public interface RecordsMapper {
      */
     @Select("select count(*) from icemanagement.equipment_rental_records where user_id = #{userId}")
     Integer leaseGetTotalByUserId(Long userId);
-}
+
 //---------------------------------------------------------------------------------------------------------
+
+
+    void createLease(LeaseRecords leaseRecords);
+}

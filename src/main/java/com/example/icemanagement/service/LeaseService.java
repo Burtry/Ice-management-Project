@@ -3,6 +3,7 @@ package com.example.icemanagement.service;
 
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.pojo.dto.HistoryPageQueryDTO;
+import com.example.icemanagement.pojo.dto.LeaseRecordsDTO;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.entity.LeaseRecords;
 import com.example.icemanagement.pojo.vo.LeaseRecordsVO;
@@ -44,4 +45,10 @@ public interface LeaseService {
      * @return
      */
     PageResult historyPage(HistoryPageQueryDTO historyPageQueryDTO);
+
+    /**
+     * 创建租借信息
+     * @param leaseRecordsDTO
+     */
+    void createLease(LeaseRecordsDTO leaseRecordsDTO);
 }

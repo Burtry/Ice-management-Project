@@ -15,9 +15,6 @@ public class LeaseRecords {
     //器材id
     private Long equipmentId;
 
-    //创建时间
-    private LocalDateTime createTime;
-
     //租借时间
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime rentalTime;
@@ -29,6 +26,12 @@ public class LeaseRecords {
     //租借记录更新时间
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
+
+    //创建时间
+    private LocalDateTime createTime;
+
+    //租借状态
+    private Integer status;
 
     //备注
     private String remark;

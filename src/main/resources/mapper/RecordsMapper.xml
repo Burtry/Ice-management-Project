@@ -31,11 +31,19 @@
         </set>
         where id = #{id}
     </update>
+
     <insert id="createReserve" useGeneratedKeys="true" keyProperty="id"><!--  useGeneratedKeys="true" 获取生成的主键值  keyProperty="id" 把"id"的值赋给ReserveRecords 中的id属性 -->
         insert into icemanagement.space_reserve_records
             (user_id, space_id, reserve_time, duration, update_time,create_time, status,remark) VALUES
             (#{userId},#{spaceId},#{reserveTime},#{duration},#{updateTime},#{createTime},#{status},#{remark})
     </insert>
+
+    <insert id="createLease" useGeneratedKeys="true" keyProperty="id">
+        insert into icemanagement.equipment_rental_records
+        (user_id, equipment_id, rental_time, return_time, update_time, status, remark, create_time) VALUES
+        (#{userId},#{equipmentId},#{rentalTime},#{returnTime},#{updateTime},#{status},#{remark},#{createTime})
+    </insert>
+
     <select id="listReserveRecords" resultType="com.example.icemanagement.pojo.vo.ReserveRecordsVO">
         select s.space_name,
                u.user_name,

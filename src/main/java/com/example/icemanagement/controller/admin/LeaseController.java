@@ -2,6 +2,7 @@ package com.example.icemanagement.controller.admin;
 
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.common.result.Result;
+import com.example.icemanagement.pojo.dto.LeaseRecordsDTO;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.entity.LeaseRecords;
 import com.example.icemanagement.service.LeaseService;
@@ -48,6 +49,14 @@ public class LeaseController {
     public Result<LeaseRecords> getById(@PathVariable Long id) {
         LeaseRecords reserveRecord = leaseService.getById(id);
         return Result.success(reserveRecord);
+    }
+
+    @PutMapping("/update")
+    @Operation(summary = "编辑租借信息")
+    public Result update(@RequestBody LeaseRecordsDTO leaseRecordsDTO) {
+        log.info("管理端根据租借id修改租借信息:{}",leaseRecordsDTO);
+        leaseService.update(leaseRecordsDTO);
+        return Result.success();
     }
 
 

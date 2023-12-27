@@ -151,4 +151,16 @@ public class LeaseServiceImpl implements LeaseService {
         leaseRecords.setRemark("用户取消租借!");
         recordsMapper.leaseUpdate(leaseRecords);
     }
+
+    /**
+     * 管理端修改租借信息
+     * @param leaseRecordsDTO
+     */
+    @Override
+    public void update(LeaseRecordsDTO leaseRecordsDTO) {
+        LeaseRecords leaseRecords = recordsMapper.leaseGetById(leaseRecordsDTO.getId());
+        BeanUtils.copyProperties(leaseRecordsDTO,leaseRecords);
+        leaseRecords.setUpdateTime(LocalDateTime.now());
+        recordsMapper.leaseUpdate(leaseRecords);
+    }
 }

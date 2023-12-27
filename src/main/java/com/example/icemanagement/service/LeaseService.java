@@ -57,4 +57,10 @@ public interface LeaseService {
      * @param id
      */
     void cancel(Long id);
+
+    /**
+     * 修改租借信息
+     * @param leaseRecordsDTO
+     */
+    void update(LeaseRecordsDTO leaseRecordsDTO);
 }

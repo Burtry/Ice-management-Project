@@ -1,6 +1,7 @@
 package com.example.icemanagement.service;
 
 import com.example.icemanagement.common.result.PageResult;
+import com.example.icemanagement.pojo.dto.HistoryPageQueryDTO;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.dto.ReserveRecordsDTO;
 import com.example.icemanagement.pojo.entity.ReserveRecords;
@@ -54,4 +55,11 @@ public interface ReserveService {
      * 编辑预约
      */
     void update(ReserveRecordsDTO reserveRecordsDTO);
+
+    /**
+     * 用户查看本用户的预约记录
+     * @param historyPageQueryDTO
+     * @return
+     */
+    PageResult historyPage(HistoryPageQueryDTO historyPageQueryDTO);
 }

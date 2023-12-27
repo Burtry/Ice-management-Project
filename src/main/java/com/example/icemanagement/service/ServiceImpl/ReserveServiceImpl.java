@@ -4,6 +4,7 @@ import com.example.icemanagement.common.exception.BaseException;
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.common.result.Result;
 import com.example.icemanagement.mapper.RecordsMapper;
+import com.example.icemanagement.pojo.dto.HistoryPageQueryDTO;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.dto.ReserveRecordsDTO;
 import com.example.icemanagement.pojo.entity.ReserveRecords;
@@ -131,4 +132,16 @@ public class ReserveServiceImpl implements ReserveService {
 
     }
 
+    /**
+     * 查看本用户的预约历史记录
+     * @param historyPageQueryDTO
+     * @return
+     */
+    @Override
+    public PageResult historyPage(HistoryPageQueryDTO historyPageQueryDTO) {
+        PageHelper.startPage(historyPageQueryDTO.getPage(), historyPageQueryDTO.getPageSize());
+        List<ReserveRecordsVO> reserveRecordsVOs = recordsMapper.listReserveRecords(historyPageQueryDTO.getUserId());
+        Integer total = recordsMapper.getTotalByUserId(historyPageQueryDTO.getUserId());
+        return new PageResult(total,reserveRecordsVOs);
+    }
 }

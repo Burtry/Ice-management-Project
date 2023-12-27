@@ -83,4 +83,22 @@ public class DiscussServiceImpl implements DiscussService {
         Page<EquipmentDiscussVO> page = discussMapper.listEquipment();
         return new PageResult(page.getTotal(),page.getResult());
     }
+
+    /**
+     * 管理员根据id删除场地评论
+     * @param id 评论id
+     */
+    @Override
+    public void deleteSpaceDiscussById(Long id) {
+        discussMapper.deleteSpaceDiscussById(id);
+    }
+
+    /**
+     * 管理员根据id删除器材评论
+     * @param id
+     */
+    @Override
+    public void deleteEquipmentDiscussById(Long id) {
+        discussMapper.deleteEquipmentById(id);
+    }
 }

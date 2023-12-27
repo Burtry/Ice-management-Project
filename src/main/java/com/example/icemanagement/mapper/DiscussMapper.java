@@ -7,6 +7,7 @@ import com.example.icemanagement.pojo.entity.DiscussBySpace;
 import com.example.icemanagement.pojo.vo.EquipmentDiscussVO;
 import com.example.icemanagement.pojo.vo.SpaceDiscussVO;
 import com.github.pagehelper.Page;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -49,4 +50,9 @@ public interface DiscussMapper {
             "left join icemanagement.user u on u.id = dse.user_id")
     Page<EquipmentDiscussVO> listEquipment();
 
+    @Delete("delete from icemanagement.discuss_space where id = #{id}")
+    void deleteSpaceDiscussById(Long id);
+
+    @Delete("delete from icemanagement.discuss_sports_equipment where id = #{id}")
+    void deleteEquipmentById(Long id);
 }

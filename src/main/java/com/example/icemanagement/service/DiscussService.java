@@ -33,4 +33,16 @@ public interface DiscussService {
      * @return
      */
     PageResult listEquipmentDiscuss(PageQueryDTO pageQueryDTO);
+
+    /**
+     * 管理员删除场地评论
+     * @param id
+     */
+    void deleteSpaceDiscussById(Long id);
+
+    /**
+     * 管理员删除器材评论
+     * @param id
+     */
+    void deleteEquipmentDiscussById(Long id);
 }

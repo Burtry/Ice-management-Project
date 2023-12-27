@@ -2,6 +2,7 @@ package com.example.icemanagement.service;
 
 
 import com.example.icemanagement.common.result.PageResult;
+import com.example.icemanagement.pojo.dto.HistoryPageQueryDTO;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.entity.LeaseRecords;
 import com.example.icemanagement.pojo.vo.LeaseRecordsVO;
@@ -36,4 +37,11 @@ public interface LeaseService {
      * @return
      */
     List<LeaseRecordsVO> getByUserId(Long userId);
+
+    /**
+     * 用户租借历史记录查询
+     * @param historyPageQueryDTO
+     * @return
+     */
+    PageResult historyPage(HistoryPageQueryDTO historyPageQueryDTO);
 }

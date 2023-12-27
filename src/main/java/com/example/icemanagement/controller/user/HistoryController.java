@@ -3,6 +3,7 @@ package com.example.icemanagement.controller.user;
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.common.result.Result;
 import com.example.icemanagement.pojo.dto.HistoryPageQueryDTO;
+import com.example.icemanagement.service.LeaseService;
 import com.example.icemanagement.service.ReserveService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,6 +22,9 @@ public class HistoryController {
     @Autowired
     private ReserveService reserveService;
 
+    @Autowired
+    private LeaseService leaseService;
+
 
     /**
      * 分页查看预约的历史记录
@@ -35,7 +39,19 @@ public class HistoryController {
         return Result.success(pageResult);
     }
 
-    //TODO 分页查看租借的历史记录
+
+    /**
+     * 分页查看租借的历史记录
+     * @param historyPageQueryDTO
+     * @return
+     */
+    @GetMapping("/lease")
+    @Operation(summary = "用户租借记录查看")
+    public Result<PageResult> leaseHistory(HistoryPageQueryDTO historyPageQueryDTO) {
+        log.info("用户租借历史记录查看{}",historyPageQueryDTO);
+        PageResult pageResult = leaseService.historyPage(historyPageQueryDTO);
+        return Result.success(pageResult);
+    }
 
 
 }

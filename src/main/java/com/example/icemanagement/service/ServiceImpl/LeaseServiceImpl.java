@@ -3,9 +3,11 @@ package com.example.icemanagement.service.ServiceImpl;
 import com.example.icemanagement.common.exception.BaseException;
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.mapper.RecordsMapper;
+import com.example.icemanagement.pojo.dto.HistoryPageQueryDTO;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.entity.LeaseRecords;
 import com.example.icemanagement.pojo.vo.LeaseRecordsVO;
+import com.example.icemanagement.pojo.vo.ReserveRecordsVO;
 import com.example.icemanagement.service.LeaseService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -20,8 +22,6 @@ public class LeaseServiceImpl implements LeaseService {
 
     @Autowired
     private RecordsMapper recordsMapper;
-
-
 
     /**
      * 分页查看器材租借记录
@@ -70,5 +70,18 @@ public class LeaseServiceImpl implements LeaseService {
     @Override
     public List<LeaseRecordsVO> getByUserId(Long userId) {
         return recordsMapper.listLeaseRecords(userId);
+    }
+
+    /**
+     * 分页查看用户租借的历史记录
+     * @param historyPageQueryDTO
+     * @return
+     */
+    @Override
+    public PageResult historyPage(HistoryPageQueryDTO historyPageQueryDTO) {
+        PageHelper.startPage(historyPageQueryDTO.getPage(), historyPageQueryDTO.getPageSize());
+        List<LeaseRecordsVO> leaseRecordsVOs = recordsMapper.listLeaseRecords(historyPageQueryDTO.getUserId());
+        Integer total = recordsMapper.leaseGetTotalByUserId(historyPageQueryDTO.getUserId());
+        return new PageResult(total,leaseRecordsVOs);
     }
 }

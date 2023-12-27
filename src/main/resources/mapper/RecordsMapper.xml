@@ -48,7 +48,7 @@
                rr.remark
         from icemanagement.space_reserve_records rr
                  left join icemanagement.user u on rr.user_id = u.id
-                join icemanagement.space s on rr.space_id = s.id
+                left join icemanagement.space s on rr.space_id = s.id
         where u.id = #{id}
         order by create_time DESC
     </select>
@@ -64,7 +64,7 @@
                err.create_time
         from icemanagement.equipment_rental_records err
         left join icemanagement.user u on err.user_id = u.id
-        join icemanagement.equipment e on err.equipment_id = e.id
+        left join icemanagement.equipment e on err.equipment_id = e.id
         where u.id = #{userId}
     </select>
 </mapper>

@@ -66,6 +66,9 @@ public interface RecordsMapper {
      */
     void createReserve(ReserveRecords reserveRecords);
 
+
+
+//---------------------------------------------------------------------------------------------------------
     /**
      * 根据用户id查看用户预约
      * @return
@@ -79,13 +82,24 @@ public interface RecordsMapper {
      * @return
      */
     @Select("select count(*) from icemanagement.space_reserve_records where user_id = #{userId}")
-    Integer getTotalByUserId(Long id);
+    Integer reserveGetTotalByUserId(Long id);
 
 
+
+    //---------------------------------------------------------------------------------------------------------
     /**
      * 根据用户id查看用户租借记录
      * @param userId
      * @return
      */
     List<LeaseRecordsVO> listLeaseRecords(Long userId);
+
+    /**
+     * 根据用户id查看该用户下所以的预约总数
+     * @param userId
+     * @return
+     */
+    @Select("select count(*) from icemanagement.equipment_rental_records where user_id = #{userId}")
+    Integer leaseGetTotalByUserId(Long userId);
 }
+//---------------------------------------------------------------------------------------------------------

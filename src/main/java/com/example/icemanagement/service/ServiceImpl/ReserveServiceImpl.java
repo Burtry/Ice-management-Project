@@ -141,7 +141,7 @@ public class ReserveServiceImpl implements ReserveService {
     public PageResult historyPage(HistoryPageQueryDTO historyPageQueryDTO) {
         PageHelper.startPage(historyPageQueryDTO.getPage(), historyPageQueryDTO.getPageSize());
         List<ReserveRecordsVO> reserveRecordsVOs = recordsMapper.listReserveRecords(historyPageQueryDTO.getUserId());
-        Integer total = recordsMapper.getTotalByUserId(historyPageQueryDTO.getUserId());
+        Integer total = recordsMapper.reserveGetTotalByUserId(historyPageQueryDTO.getUserId());
         return new PageResult(total,reserveRecordsVOs);
     }
 }

@@ -2,9 +2,12 @@ package com.example.icemanagement.service.ServiceImpl;
 
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.mapper.DiscussMapper;
+import com.example.icemanagement.pojo.dto.EquipmentDiscussDTO;
 import com.example.icemanagement.pojo.dto.PageQueryDTO;
 import com.example.icemanagement.pojo.dto.SpaceDiscussDTO;
+import com.example.icemanagement.pojo.entity.DiscussByEquipment;
 import com.example.icemanagement.pojo.entity.DiscussBySpace;
+import com.example.icemanagement.pojo.vo.EquipmentDiscussVO;
 import com.example.icemanagement.pojo.vo.SpaceDiscussVO;
 import com.example.icemanagement.service.DiscussService;
 import com.github.pagehelper.Page;
@@ -24,7 +27,7 @@ public class DiscussServiceImpl implements DiscussService {
     private DiscussMapper discussMapper;
 
     /**
-     * 用户添加评论
+     * 用户添加场地评论
      * @param spaceDiscussDTO
      */
     @Override
@@ -49,6 +52,35 @@ public class DiscussServiceImpl implements DiscussService {
     public PageResult listSpaceDiscuss(PageQueryDTO pageQueryDTO) {
         PageHelper.startPage(pageQueryDTO.getPage(), pageQueryDTO.getPageSize());
         Page<SpaceDiscussVO> page = discussMapper.listSpaceDiscuss();
+        return new PageResult(page.getTotal(),page.getResult());
+    }
+
+    /**
+     * 用户添加场地评论
+     * @param equipmentDiscussDTO
+     */
+    @Override
+    public void createEquipmentDiscuss(EquipmentDiscussDTO equipmentDiscussDTO) {
+        DiscussByEquipment discussByEquipment = new DiscussByEquipment();
+        BeanUtils.copyProperties(equipmentDiscussDTO,discussByEquipment);
+        discussByEquipment.setCreateTime(LocalDateTime.now());
+        discussByEquipment.setUpdateTime(LocalDateTime.now());
+        discussMapper.createEquipmentDiscuss(discussByEquipment);
+
+        Long id = discussByEquipment.getId();
+        log.info("insert语句生成的主键值id:{}",id);
+
+    }
+
+    /**
+     * 分页查看器材评论
+     * @param pageQueryDTO
+     * @return
+     */
+    @Override
+    public PageResult listEquipmentDiscuss(PageQueryDTO pageQueryDTO) {
+        PageHelper.startPage(pageQueryDTO.getPage(), pageQueryDTO.getPageSize());
+        Page<EquipmentDiscussVO> page = discussMapper.listEquipment();
         return new PageResult(page.getTotal(),page.getResult());
     }
 }

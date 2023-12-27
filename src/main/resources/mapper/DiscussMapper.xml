@@ -6,4 +6,8 @@
         insert into icemanagement.discuss_space (create_time, space_id, user_id, content, update_time) VALUES
                                                 (#{createTime},#{spaceId},#{userId},#{content},#{updateTime})
     </insert>
+    <insert id="createEquipmentDiscuss" useGeneratedKeys="true" keyProperty="id">
+        insert into icemanagement.discuss_sports_equipment (create_time, equipment_id, user_id, content, update_time) VALUES
+                                                            (#{createTime},#{equipmentId},#{userId},#{content},#{updateTime})
+    </insert>
 </mapper>

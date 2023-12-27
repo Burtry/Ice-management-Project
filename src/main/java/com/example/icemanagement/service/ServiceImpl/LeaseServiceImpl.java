@@ -2,6 +2,7 @@ package com.example.icemanagement.service.ServiceImpl;
 
 import com.example.icemanagement.common.exception.BaseException;
 import com.example.icemanagement.common.result.PageResult;
+import com.example.icemanagement.mapper.EquipmentMapper;
 import com.example.icemanagement.mapper.RecordsMapper;
 import com.example.icemanagement.pojo.dto.HistoryPageQueryDTO;
 import com.example.icemanagement.pojo.dto.LeaseRecordsDTO;
@@ -31,7 +32,7 @@ public class LeaseServiceImpl implements LeaseService {
     private RecordsMapper recordsMapper;
 
     @Autowired
-    private EquipmentService equipmentService;
+    private EquipmentMapper equipmentMapper;
 
 
     /**
@@ -104,29 +105,35 @@ public class LeaseServiceImpl implements LeaseService {
     @Override
     public void createLease(LeaseRecordsDTO leaseRecordsDTO) {
 
-
-
+        //TODO 待测试
         //获取该器材信息
         Long equipmentId = leaseRecordsDTO.getEquipmentId();
-        Equipment equipment = equipmentService.getById(equipmentId);
+        Equipment equipment = equipmentMapper.getById(equipmentId);
 
+        Integer number = equipment.getNumber();
         //判断是否存在
         if (equipment == null) {
             throw new BaseException("该器材不存在!");
         }
 
         //判断器材数量是否大于一，如果大于1，则闯将租借记录，否则抛出器材不足的异常
-        if (equipment.getNumber() <= 0) {
+        if (number <= 0) {
             throw new BaseException("器材不足!");
         }
+        //借出,将器材数量-1
+        equipment.setNumber(number - 1);
+        equipmentMapper.update(equipment);
+
 
         LeaseRecords leaseRecords = new LeaseRecords();
         BeanUtils.copyProperties(leaseRecordsDTO,leaseRecords);
+
         leaseRecords.setCreateTime(LocalDateTime.now());
         leaseRecords.setUpdateTime(LocalDateTime.now());
 
         //将此器材的状态设置为1，已借出
         leaseRecords.setStatus(1);
+
         recordsMapper.createLease(leaseRecords);
 
         //获取insert语句生成的主键值

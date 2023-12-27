@@ -4,6 +4,7 @@ import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.entity.LeaseRecords;
 import com.example.icemanagement.pojo.entity.ReserveRecords;
 import com.example.icemanagement.pojo.entity.Space;
+import com.example.icemanagement.pojo.vo.LeaseRecordsVO;
 import com.example.icemanagement.pojo.vo.ReserveRecordsVO;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
@@ -66,10 +67,11 @@ public interface RecordsMapper {
     void createReserve(ReserveRecords reserveRecords);
 
     /**
-     * 根据用户id分页查看用户预约
+     * 根据用户id查看用户预约
      * @return
      */
     List<ReserveRecordsVO> listReserveRecords(Long id);
+
 
     /**
      * 根据用户id查看该用户下所以的预约总数
@@ -79,4 +81,11 @@ public interface RecordsMapper {
     @Select("select count(*) from icemanagement.space_reserve_records where user_id = #{userId}")
     Integer getTotalByUserId(Long id);
 
+
+    /**
+     * 根据用户id查看用户租借记录
+     * @param userId
+     * @return
+     */
+    List<LeaseRecordsVO> listLeaseRecords(Long userId);
 }

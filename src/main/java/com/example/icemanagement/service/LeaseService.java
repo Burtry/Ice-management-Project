@@ -4,6 +4,9 @@ package com.example.icemanagement.service;
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.entity.LeaseRecords;
+import com.example.icemanagement.pojo.vo.LeaseRecordsVO;
+
+import java.util.List;
 
 public interface LeaseService {
 
@@ -26,4 +29,11 @@ public interface LeaseService {
      * @return
      */
     LeaseRecords getById(Long id);
+
+    /**
+     * 根据用户id查看该用户的租借信息
+     * @param userId
+     * @return
+     */
+    List<LeaseRecordsVO> getByUserId(Long userId);
 }

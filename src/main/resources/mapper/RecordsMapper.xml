@@ -11,8 +11,9 @@
             <if test="rentalTime != null">rental_time = #{rentalTime}</if>
             <if test="returnTime != null">return_time = #{returnTime}</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
-<!--            <if test="createTime != null">create_time = #{createTime},</if>-->
+            <if test="createTime != null">create_time = #{createTime},</if>
             <if test="status != null">status = #{status},</if>
+            <if test="remark != null">remark = #{remark},</if>
         </set>
         where id = #{id}
     </update>
@@ -50,5 +51,20 @@
                 join icemanagement.space s on rr.space_id = s.id
         where u.id = #{id}
         order by create_time DESC
+    </select>
+    <select id="listLeaseRecords" resultType="com.example.icemanagement.pojo.vo.LeaseRecordsVO">
+        select e.equipment_name,
+               u.user_name,
+               u.sex,
+               u.phone,
+               u.id_number,
+               err.rental_time,
+               err.return_time,
+               err.remark,
+               err.create_time
+        from icemanagement.equipment_rental_records err
+        left join icemanagement.user u on err.user_id = u.id
+        join icemanagement.equipment e on err.equipment_id = e.id
+        where u.id = #{userId}
     </select>
 </mapper>

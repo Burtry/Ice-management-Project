@@ -7,7 +7,6 @@ import java.io.Serializable;
 @Data
 public class HistoryPageQueryDTO implements Serializable {
 
-
     //用户id
     private Long userId;
 

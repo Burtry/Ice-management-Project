@@ -32,4 +32,5 @@ public class ReserveRecords {
 
     //租借状态 0未租借，1已借出
     private Integer status;
+
 }

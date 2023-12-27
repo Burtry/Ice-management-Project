@@ -5,12 +5,12 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class ReserveRecordsVO {
+public class LeaseRecordsVO {
 
-    //预约场地名称
-    private String spaceName;
+    //借用器材名称
+    private String equipmentName;
 
-    //预约用户名(唯一)
+    //借用用户名(唯一)
     private String userName;
 
     //用户性别
@@ -22,15 +22,16 @@ public class ReserveRecordsVO {
     //用户身份证
     private String idNumber;
 
-    //预约时间
-    private LocalDateTime reserveTime;
+    //租借时间
+    private LocalDateTime rentalTime;
 
-    //预约时长
-    private Integer duration;
+    //归还日期
+    private LocalDateTime returnTime;
 
     //备注
     private String remark;
 
     //创建时间
     private LocalDateTime createTime;
+
 }

@@ -22,8 +22,8 @@ public interface EquipmentMapper {
      * 新增器材
      * @param equipment
      */
-    @Insert("insert into icemanagement.equipment (create_time, equipment_name, equipment_type,status, specification, number, precautions, equipment_detail, img, update_time) VALUES " +
-            "(#{createTime},#{equipmentName},#{equipmentType},#{status},#{specification},#{number},#{precautions},#{equipmentDetail},#{img},#{updateTime})")
+    @Insert("insert into icemanagement.equipment (create_time, equipment_name, equipment_type, specification, number, precautions, equipment_detail, img, update_time) VALUES " +
+            "(#{createTime},#{equipmentName},#{equipmentType},#{specification},#{number},#{precautions},#{equipmentDetail},#{img},#{updateTime})")
     void insert(Equipment equipment);
 
     /**

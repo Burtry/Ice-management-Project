@@ -45,9 +45,9 @@ public class ReserveController {
      * @return
      */
     @GetMapping("/list")
-    @Operation(summary = "分页查看预约")
+    @Operation(summary = "查看预约")
     public Result<List<ReserveRecordsVO>> listReserveRecords(Long id) {
-        log.info("根据用户id分页查询用户预约:{}",id);
+        log.info("根据用户id查询用户预约:{}",id);
         List<ReserveRecordsVO> list = reserveService.list(id);
         return Result.success(list);
     }

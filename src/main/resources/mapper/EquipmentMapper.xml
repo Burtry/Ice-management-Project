@@ -35,7 +35,7 @@
             <if test="equipmentDetail != null">equipment_detail = #{equipmentDetail},</if>
             <if test="img != null">img = #{img},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
-            <if test="status != null">status = #{status},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
         </set>
         where id = #{id}
     </update>

@@ -3,7 +3,6 @@ package com.example.icemanagement.controller.user;
 import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.common.result.Result;
 import com.example.icemanagement.pojo.dto.HistoryPageQueryDTO;
-import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.service.ReserveService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user/history")
 @Slf4j
 @Tag(name = "用户端")
-public class History {
+public class HistoryController {
 
     @Autowired
     private ReserveService reserveService;
@@ -35,6 +34,8 @@ public class History {
         PageResult pageResult = reserveService.historyPage(historyPageQueryDTO);
         return Result.success(pageResult);
     }
+
+    //TODO 分页查看租借的历史记录
 
 
 }

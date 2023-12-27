@@ -5,6 +5,7 @@ import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.mapper.RecordsMapper;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
 import com.example.icemanagement.pojo.entity.LeaseRecords;
+import com.example.icemanagement.pojo.vo.LeaseRecordsVO;
 import com.example.icemanagement.service.LeaseService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class LeaseServiceImpl implements LeaseService {
@@ -42,7 +44,6 @@ public class LeaseServiceImpl implements LeaseService {
     public void updateByStatus(Integer status,Long id) {
         LeaseRecords reserveRecord = new LeaseRecords();
         reserveRecord.setId(id);
-        reserveRecord.setStatus(status);
         reserveRecord.setUpdateTime(LocalDateTime.now());
         recordsMapper.leaseUpdate(reserveRecord);
     }
@@ -59,5 +60,15 @@ public class LeaseServiceImpl implements LeaseService {
             throw new BaseException("租借记录不存在");
         }
         return reserveRecord;
+    }
+
+    /**
+     * 根据用户id查看该用户的租借信息
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<LeaseRecordsVO> getByUserId(Long userId) {
+        return recordsMapper.listLeaseRecords(userId);
     }
 }

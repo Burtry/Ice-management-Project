@@ -51,4 +51,10 @@ public interface LeaseService {
      * @param leaseRecordsDTO
      */
     void createLease(LeaseRecordsDTO leaseRecordsDTO);
+
+    /**
+     * 用户取消租借
+     * @param id
+     */
+    void cancel(Long id);
 }

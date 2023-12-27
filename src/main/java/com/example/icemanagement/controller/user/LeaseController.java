@@ -51,6 +51,19 @@ public class LeaseController {
         return Result.success();
     }
 
+    /**
+     * 取消租借
+     * @param id 租借id
+     * @return
+     */
+    @PutMapping("/cancel/{id}")
+    @Operation(summary = "用户取消租借")
+    public Result cancel(@PathVariable Long id) {
+        log.info("用户取消租借id:{}",id);
+        leaseService.cancel(id);
+        return Result.success();
+    }
+
 
 
 }

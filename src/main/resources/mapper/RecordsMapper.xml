@@ -8,8 +8,8 @@
         <set>
             <if test="equipmentId != null">equipment_id = #{equipmentId},</if>
             <if test="userId != null">user_id = #{userId},</if>
-            <if test="rentalTime != null">rental_time = #{rentalTime}</if>
-            <if test="returnTime != null">return_time = #{returnTime}</if>
+            <if test="rentalTime != null">rental_time = #{rentalTime},</if>
+            <if test="returnTime != null">return_time = #{returnTime},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="status != null">status = #{status},</if>

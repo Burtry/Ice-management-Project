@@ -58,7 +58,7 @@ public class ReserveController {
      * @return
      */
     @PutMapping("/cancel/{id}")
-    @Operation(summary = "取消预约")
+    @Operation(summary = "用户取消预约")
     public Result cancel(@PathVariable Long id) {
         log.info("取消预约：{}",id);
         reserveService.cancel(id);

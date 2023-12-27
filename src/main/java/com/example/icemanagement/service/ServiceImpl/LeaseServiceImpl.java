@@ -6,9 +6,11 @@ import com.example.icemanagement.mapper.RecordsMapper;
 import com.example.icemanagement.pojo.dto.HistoryPageQueryDTO;
 import com.example.icemanagement.pojo.dto.LeaseRecordsDTO;
 import com.example.icemanagement.pojo.dto.RecordsPageQueryDTO;
+import com.example.icemanagement.pojo.entity.Equipment;
 import com.example.icemanagement.pojo.entity.LeaseRecords;
 import com.example.icemanagement.pojo.vo.LeaseRecordsVO;
 import com.example.icemanagement.pojo.vo.ReserveRecordsVO;
+import com.example.icemanagement.service.EquipmentService;
 import com.example.icemanagement.service.LeaseService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -27,6 +29,10 @@ public class LeaseServiceImpl implements LeaseService {
 
     @Autowired
     private RecordsMapper recordsMapper;
+
+    @Autowired
+    private EquipmentService equipmentService;
+
 
     /**
      * 分页查看器材租借记录
@@ -50,6 +56,7 @@ public class LeaseServiceImpl implements LeaseService {
         LeaseRecords reserveRecord = new LeaseRecords();
         reserveRecord.setId(id);
         reserveRecord.setUpdateTime(LocalDateTime.now());
+        reserveRecord.setStatus(status);
         recordsMapper.leaseUpdate(reserveRecord);
     }
 
@@ -96,6 +103,23 @@ public class LeaseServiceImpl implements LeaseService {
      */
     @Override
     public void createLease(LeaseRecordsDTO leaseRecordsDTO) {
+
+
+
+        //获取该器材信息
+        Long equipmentId = leaseRecordsDTO.getEquipmentId();
+        Equipment equipment = equipmentService.getById(equipmentId);
+
+        //判断是否存在
+        if (equipment == null) {
+            throw new BaseException("该器材不存在!");
+        }
+
+        //判断器材数量是否大于一，如果大于1，则闯将租借记录，否则抛出器材不足的异常
+        if (equipment.getNumber() <= 0) {
+            throw new BaseException("器材不足!");
+        }
+
         LeaseRecords leaseRecords = new LeaseRecords();
         BeanUtils.copyProperties(leaseRecordsDTO,leaseRecords);
         leaseRecords.setCreateTime(LocalDateTime.now());
@@ -108,5 +132,23 @@ public class LeaseServiceImpl implements LeaseService {
         //获取insert语句生成的主键值
         Long id = leaseRecords.getId();
         log.info("insert语句生成的主键值id:{}",id);
+    }
+
+
+    /**
+     * 用户取消租借
+     * @param id
+     */
+    @Override
+    public void cancel(Long id) {
+        LeaseRecords leaseRecords = recordsMapper.leaseGetById(id);
+        if (leaseRecords == null) {
+            throw new BaseException("该租借记录不存在!");
+        }
+        //设置成未租借
+        leaseRecords.setStatus(0);
+        leaseRecords.setUpdateTime(LocalDateTime.now());
+        leaseRecords.setRemark("用户取消租借!");
+        recordsMapper.leaseUpdate(leaseRecords);
     }
 }

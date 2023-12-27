@@ -1,17 +1,18 @@
 package com.example.icemanagement.controller.user;
 
+import com.example.icemanagement.common.result.PageResult;
 import com.example.icemanagement.common.result.Result;
+import com.example.icemanagement.pojo.dto.PageQueryDTO;
 import com.example.icemanagement.pojo.dto.SpaceDiscussDTO;
 import com.example.icemanagement.pojo.entity.DiscussBySpace;
+import com.example.icemanagement.pojo.vo.SpaceDiscussVO;
 import com.example.icemanagement.service.DiscussService;
+import com.github.pagehelper.Page;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 用户端评论
@@ -36,6 +37,19 @@ public class DiscussController {
         log.info("用户新增场地反馈{}",spaceDiscussDTO);
         discussService.createSpaceDiscuss(spaceDiscussDTO);
         return Result.success();
+    }
+
+    /**
+     * 分页查看场地评论
+     * @param pageQueryDTO
+     * @return
+     */
+    @GetMapping("/list")
+    @Operation(summary = "分页查看场地评论")
+    public Result<PageResult> list(PageQueryDTO pageQueryDTO) {
+        log.info("分页查看场地评论:{}",pageQueryDTO);
+        PageResult pageResult = discussService.listSpaceDiscuss(pageQueryDTO);
+        return Result.success(pageResult);
     }
 
 
